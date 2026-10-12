@@ -1,0 +1,33 @@
+# Java build output
+*.class
+*.jar
+*.war
+*.ear
+bin/
+build/
+out/
+target/
+.gradle/
+
+# Local IDE and operating-system files
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+.DS_Store
+Thumbs.db
+
+# Editor and Office temporary files
+*.swp
+*.swo
+*~
+~$*
+*.tmp
+*.temp
+
+# Local environment configuration
+.env
+.env.*
+!.env.example
