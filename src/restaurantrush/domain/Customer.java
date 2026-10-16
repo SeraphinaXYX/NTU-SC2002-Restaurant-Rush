@@ -80,4 +80,5 @@ public class Customer {
     public int getReadyToPayTurn() { return readyToPayTurn; }
     public int getWaitingLoss() { return 8; }
     public String getType() { return "Regular"; }
+    public int discountedBill(int baseCents) { return baseCents; }
 }
