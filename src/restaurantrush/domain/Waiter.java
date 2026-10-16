@@ -10,7 +10,7 @@ public final class Waiter extends Staff {
     public void takeOrder(Customer customer, Menu menu) {
         requireAvailable();
         MenuItem item = customer.chooseMeal(menu);
-        customer.placeOrder(new Order(item, item.getPriceCents()));
+        customer.placeOrder(new Order(item, customer.discountedBill(item.getPriceCents())));
         completeTask();
     }
 

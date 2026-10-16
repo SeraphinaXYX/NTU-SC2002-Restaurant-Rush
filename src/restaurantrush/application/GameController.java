@@ -12,12 +12,13 @@ import restaurantrush.domain.Table;
 import restaurantrush.domain.Waiter;
 
 public final class GameController {
-    public static final int STAGE = 1;
+    public static final int STAGE = 2;
     public static final int MAX_TURNS = 18;
     private final Menu menu = new Menu();
     private final ArrayList<Customer> customers = new ArrayList<Customer>();
     private final ArrayList<Table> tables = new ArrayList<Table>();
     private final ArrayList<PaymentRecord> payments = new ArrayList<PaymentRecord>();
+    private final ArrivalSchedule arrivals = new ArrivalSchedule();
     private final Waiter waiter = new Waiter();
     private final Chef chef = new Chef();
     private final Cashier cashier = new Cashier();
@@ -35,7 +36,8 @@ public final class GameController {
         waiter.startTurn();
         chef.startTurn();
         cashier.startTurn();
-        if ((turn - 1) % 3 == 0) { customers.add(new Customer((turn + 2) / 3, turn)); }
+        Customer arrival = arrivals.arrivalAt(turn);
+        if (arrival != null) { customers.add(arrival); }
         phase = TurnPhase.WAITER;
     }
 
