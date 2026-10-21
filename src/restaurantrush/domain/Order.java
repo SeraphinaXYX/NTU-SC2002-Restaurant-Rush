@@ -52,5 +52,6 @@ public final class Order {
     public MenuItem getItem() { return item; }
     public int getBillCents() { return billCents; }
     public int getRemainingUnits() { return remainingUnits; }
+    public int getReadyTurn() { return readyTurn; }
     public String getStatus() { return status; }
 }

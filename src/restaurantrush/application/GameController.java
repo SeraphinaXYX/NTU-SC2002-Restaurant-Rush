@@ -10,16 +10,21 @@ import restaurantrush.domain.OrderStatus;
 import restaurantrush.domain.PaymentRecord;
 import restaurantrush.domain.Table;
 import restaurantrush.domain.Waiter;
+import restaurantrush.domain.Host;
+import restaurantrush.domain.HappyHour;
+import restaurantrush.domain.PricingService;
 
 public final class GameController {
-    public static final int STAGE = 2;
+    public static final int STAGE = 3;
     public static final int MAX_TURNS = 18;
-    private final Menu menu = new Menu();
+    private final Menu menu = Menu.withCombo();
     private final ArrayList<Customer> customers = new ArrayList<Customer>();
     private final ArrayList<Table> tables = new ArrayList<Table>();
     private final ArrayList<PaymentRecord> payments = new ArrayList<PaymentRecord>();
     private final ArrivalSchedule arrivals = new ArrivalSchedule();
-    private final Waiter waiter = new Waiter();
+    private final HappyHour happyHour = new HappyHour();
+    private final Host host = new Host();
+    private final Waiter waiter = new Waiter(new PricingService(happyHour));
     private final Chef chef = new Chef();
     private final Cashier cashier = new Cashier();
     private int turn;
@@ -31,13 +36,33 @@ public final class GameController {
     }
 
     public void beginTurn() {
+        beginTurn(false);
+    }
+
+    public void beginTurn(boolean activateHappyHour) {
         requirePhase(TurnPhase.BETWEEN_TURNS);
+        happyHour.startTurn(turn + 1, activateHappyHour);
         turn++;
+        host.startTurn();
         waiter.startTurn();
         chef.startTurn();
         cashier.startTurn();
         Customer arrival = arrivals.arrivalAt(turn);
         if (arrival != null) { customers.add(arrival); }
+        if (happyHour.isActive()) {
+            for (Customer customer : customers) { customer.recoverSatisfaction(15); }
+        }
+        phase = TurnPhase.HOST;
+    }
+
+    public void seatWithHost(int id) {
+        requirePhase(TurnPhase.HOST);
+        host.seat(customer(id), freeTable());
+        phase = TurnPhase.WAITER;
+    }
+
+    public void waitHost() {
+        requirePhase(TurnPhase.HOST);
         phase = TurnPhase.WAITER;
     }
 
@@ -151,4 +176,6 @@ public final class GameController {
     public ArrayList<Customer> getCustomers() { return new ArrayList<Customer>(customers); }
     public ArrayList<Table> getTables() { return new ArrayList<Table>(tables); }
     public ArrayList<PaymentRecord> getPayments() { return new ArrayList<PaymentRecord>(payments); }
+    public int getHappyHourRemainingTurns() { return happyHour.getRemainingTurns(); }
+    public boolean hasUsedHappyHour() { return happyHour.hasBeenUsed(); }
 }
