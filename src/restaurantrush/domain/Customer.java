@@ -68,6 +68,14 @@ public class Customer {
         }
     }
 
+    public void recoverSatisfaction(int amount) {
+        if (amount < 0) { throw new IllegalArgumentException("Recovery cannot be negative."); }
+        if (status.equals(CustomerStatus.WAITING) || status.equals(CustomerStatus.SEATED)) {
+            if (amount > 100 - satisfaction) { satisfaction = 100; }
+            else { satisfaction += amount; }
+        }
+    }
+
     private static void require(boolean valid, String message) {
         if (!valid) { throw new IllegalStateException(message); }
     }
@@ -77,6 +85,7 @@ public class Customer {
     public int getSatisfaction() { return satisfaction; }
     public String getStatus() { return status; }
     public Order getOrder() { return order; }
+    public int getServedTurn() { return servedTurn; }
     public int getReadyToPayTurn() { return readyToPayTurn; }
     public int getWaitingLoss() { return 8; }
     public String getType() { return "Regular"; }

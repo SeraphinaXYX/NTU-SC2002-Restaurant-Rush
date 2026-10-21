@@ -11,6 +11,12 @@ public final class Menu {
         items.add(MenuItem.PASTA);
     }
 
+    public static Menu withCombo() {
+        Menu menu = new Menu();
+        menu.items.add(new ComboMeal(MenuItem.SALAD, MenuItem.PASTA));
+        return menu;
+    }
+
     public ArrayList<MenuItem> getItems() {
         return new ArrayList<MenuItem>(items);
     }
