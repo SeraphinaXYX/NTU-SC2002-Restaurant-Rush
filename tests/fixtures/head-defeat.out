@@ -1,0 +1,221 @@
+Restaurant Rush - Stage 3
+Goal after turn 18: 4 paid customers, $45.00 revenue, average satisfaction 60.
+Salad: $9.00, preparation units 1
+Burger: $15.00, preparation units 1
+Pasta: $18.00, preparation units 2
+Salad + Pasta: $24.30, preparation units 3
+Start turn 1: Happy Hour [on | off]: 
+Turn 1/18 | Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C1 
+Table 1: free
+Table 2: free
+C1 Regular | WAITING | satisfaction 100 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 1: Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 2: Happy Hour [on | off]: 
+Turn 2/18 | Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C1 
+Table 1: free
+Table 2: free
+C1 Regular | WAITING | satisfaction 92 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 2: Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 3: Happy Hour [on | off]: 
+Turn 3/18 | Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C1 
+Table 1: free
+Table 2: free
+C1 Regular | WAITING | satisfaction 84 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 3: Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 4: Happy Hour [on | off]: 
+Turn 4/18 | Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C1 C2 
+Table 1: free
+Table 2: free
+C1 Regular | WAITING | satisfaction 76 | no order
+C2 VIP | WAITING | satisfaction 100 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 4: Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 5: Happy Hour [on | off]: 
+Turn 5/18 | Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C1 C2 
+Table 1: free
+Table 2: free
+C1 Regular | WAITING | satisfaction 68 | no order
+C2 VIP | WAITING | satisfaction 95 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 5: Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 6: Happy Hour [on | off]: 
+Turn 6/18 | Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C1 C2 
+Table 1: free
+Table 2: free
+C1 Regular | WAITING | satisfaction 60 | no order
+C2 VIP | WAITING | satisfaction 90 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 6: Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 7: Happy Hour [on | off]: 
+Turn 7/18 | Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C1 C2 C3 
+Table 1: free
+Table 2: free
+C1 Regular | WAITING | satisfaction 52 | no order
+C2 VIP | WAITING | satisfaction 85 | no order
+C3 Critic | WAITING | satisfaction 100 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 7: Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 8: Happy Hour [on | off]: 
+Turn 8/18 | Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C1 C2 C3 
+Table 1: free
+Table 2: free
+C1 Regular | WAITING | satisfaction 44 | no order
+C2 VIP | WAITING | satisfaction 80 | no order
+C3 Critic | WAITING | satisfaction 88 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 8: Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 9: Happy Hour [on | off]: 
+Turn 9/18 | Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C1 C2 C3 
+Table 1: free
+Table 2: free
+C1 Regular | WAITING | satisfaction 36 | no order
+C2 VIP | WAITING | satisfaction 75 | no order
+C3 Critic | WAITING | satisfaction 76 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 9: Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 10: Happy Hour [on | off]: 
+Turn 10/18 | Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C1 C2 C3 C4 
+Table 1: free
+Table 2: free
+C1 Regular | WAITING | satisfaction 28 | no order
+C2 VIP | WAITING | satisfaction 70 | no order
+C3 Critic | WAITING | satisfaction 64 | no order
+C4 Regular | WAITING | satisfaction 100 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 10: Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 11: Happy Hour [on | off]: 
+Turn 11/18 | Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C1 C2 C3 C4 
+Table 1: free
+Table 2: free
+C1 Regular | WAITING | satisfaction 20 | no order
+C2 VIP | WAITING | satisfaction 65 | no order
+C3 Critic | WAITING | satisfaction 52 | no order
+C4 Regular | WAITING | satisfaction 92 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 11: Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 12: Happy Hour [on | off]: 
+Turn 12/18 | Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C1 C2 C3 C4 
+Table 1: free
+Table 2: free
+C1 Regular | WAITING | satisfaction 12 | no order
+C2 VIP | WAITING | satisfaction 60 | no order
+C3 Critic | WAITING | satisfaction 40 | no order
+C4 Regular | WAITING | satisfaction 84 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 12: Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 13: Happy Hour [on | off]: 
+Turn 13/18 | Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C1 C2 C3 C4 C5 
+Table 1: free
+Table 2: free
+C1 Regular | WAITING | satisfaction 4 | no order
+C2 VIP | WAITING | satisfaction 55 | no order
+C3 Critic | WAITING | satisfaction 28 | no order
+C4 Regular | WAITING | satisfaction 76 | no order
+C5 Regular | WAITING | satisfaction 100 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 13: Paid: 0 | Served: 0 | Unhappy departures: 1 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 14: Happy Hour [on | off]: 
+Turn 14/18 | Paid: 0 | Served: 0 | Unhappy departures: 1 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C2 C3 C4 C5 
+Table 1: free
+Table 2: free
+C1 Regular | LEFT | satisfaction 0 | no order
+C2 VIP | WAITING | satisfaction 50 | no order
+C3 Critic | WAITING | satisfaction 16 | no order
+C4 Regular | WAITING | satisfaction 68 | no order
+C5 Regular | WAITING | satisfaction 92 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 14: Paid: 0 | Served: 0 | Unhappy departures: 1 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 15: Happy Hour [on | off]: 
+Turn 15/18 | Paid: 0 | Served: 0 | Unhappy departures: 1 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C2 C3 C4 C5 
+Table 1: free
+Table 2: free
+C1 Regular | LEFT | satisfaction 0 | no order
+C2 VIP | WAITING | satisfaction 45 | no order
+C3 Critic | WAITING | satisfaction 4 | no order
+C4 Regular | WAITING | satisfaction 60 | no order
+C5 Regular | WAITING | satisfaction 84 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 15: Paid: 0 | Served: 0 | Unhappy departures: 2 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 16: Happy Hour [on | off]: 
+Turn 16/18 | Paid: 0 | Served: 0 | Unhappy departures: 2 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C2 C4 C5 C6 
+Table 1: free
+Table 2: free
+C1 Regular | LEFT | satisfaction 0 | no order
+C2 VIP | WAITING | satisfaction 40 | no order
+C3 Critic | LEFT | satisfaction 0 | no order
+C4 Regular | WAITING | satisfaction 52 | no order
+C5 Regular | WAITING | satisfaction 76 | no order
+C6 Regular | WAITING | satisfaction 100 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 16: Paid: 0 | Served: 0 | Unhappy departures: 2 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 17: Happy Hour [on | off]: 
+Turn 17/18 | Paid: 0 | Served: 0 | Unhappy departures: 2 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C2 C4 C5 C6 
+Table 1: free
+Table 2: free
+C1 Regular | LEFT | satisfaction 0 | no order
+C2 VIP | WAITING | satisfaction 35 | no order
+C3 Critic | LEFT | satisfaction 0 | no order
+C4 Regular | WAITING | satisfaction 44 | no order
+C5 Regular | WAITING | satisfaction 68 | no order
+C6 Regular | WAITING | satisfaction 92 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 17: Paid: 0 | Served: 0 | Unhappy departures: 2 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 18: Happy Hour [on | off]: 
+Turn 18/18 | Paid: 0 | Served: 0 | Unhappy departures: 2 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C2 C4 C5 C6 
+Table 1: free
+Table 2: free
+C1 Regular | LEFT | satisfaction 0 | no order
+C2 VIP | WAITING | satisfaction 30 | no order
+C3 Critic | LEFT | satisfaction 0 | no order
+C4 Regular | WAITING | satisfaction 36 | no order
+C5 Regular | WAITING | satisfaction 60 | no order
+C6 Regular | WAITING | satisfaction 84 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 18: Paid: 0 | Served: 0 | Unhappy departures: 2 | Revenue: $0.00 | Paid satisfaction: N/A
+FINAL: DEFEAT
+Paid: 0 | Served: 0 | Unhappy departures: 2 | Revenue: $0.00 | Paid satisfaction: N/A | Turns used: 18
+C1 Regular | LEFT | satisfaction 0 | no order
+C2 VIP | WAITING | satisfaction 25 | no order
+C3 Critic | LEFT | satisfaction 0 | no order
+C4 Regular | WAITING | satisfaction 28 | no order
+C5 Regular | WAITING | satisfaction 52 | no order
+C6 Regular | WAITING | satisfaction 76 | no order

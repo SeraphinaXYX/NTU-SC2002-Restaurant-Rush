@@ -1,0 +1,76 @@
+maybe
+off
+seat 99
+seat 1
+serve 1
+order 1
+cook 99
+cook 1
+off
+wait
+serve 1
+wait
+off
+wait
+wait
+wait
+on
+seat 2
+order 2
+cook 2
+off
+wait
+serve 2
+wait
+off
+wait
+wait
+wait
+off
+seat 3
+order 3
+cook 3
+off
+wait
+wait
+cook 3
+off
+wait
+wait
+cook 3
+off
+seat 4
+serve 3
+wait
+off
+wait
+order 4
+cook 4
+off
+wait
+wait
+cook 4
+off
+seat 5
+order 5
+cook 4
+off
+wait
+serve 4
+cook 5
+off
+wait
+serve 5
+wait
+off
+wait
+wait
+wait
+off
+wait
+wait
+wait
+off
+wait
+wait
+wait
