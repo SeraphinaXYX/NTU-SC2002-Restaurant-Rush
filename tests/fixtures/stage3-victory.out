@@ -1,0 +1,221 @@
+Restaurant Rush - Stage 3
+Goal after turn 18: 4 paid customers, $45.00 revenue, average satisfaction 60.
+Salad: $9.00, preparation units 1
+Burger: $15.00, preparation units 1
+Pasta: $18.00, preparation units 2
+Salad + Pasta: $24.30, preparation units 3
+Start turn 1: Happy Hour [on | off]: 
+Turn 1/18 | Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C1 
+Table 1: free
+Table 2: free
+C1 Regular | WAITING | satisfaction 100 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 1: Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 2: Happy Hour [on | off]: 
+Turn 2/18 | Paid: 0 | Served: 0 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: empty
+Table 1: C1
+Table 2: free
+C1 Regular | SEATED | satisfaction 92 | Salad READY, remaining prep 0, locked bill $9.00
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 2: Paid: 0 | Served: 1 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 3: Happy Hour [on | off]: 
+Turn 3/18 | Paid: 0 | Served: 1 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: empty
+Table 1: C1
+Table 2: free
+C1 Regular | EATING | satisfaction 92 | Salad SERVED, remaining prep 0, locked bill $9.00
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 3: Paid: 0 | Served: 1 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Start turn 4: Happy Hour [on | off]: 
+Turn 4/18 | Paid: 0 | Served: 1 | Unhappy departures: 0 | Revenue: $0.00 | Paid satisfaction: N/A
+Waiting queue: C2 
+Table 1: C1
+Table 2: free
+C1 Regular | READY_TO_PAY | satisfaction 92 | Salad SERVED, remaining prep 0, locked bill $9.00
+C2 VIP | WAITING | satisfaction 100 | no order
+Happy Hour remaining: 2 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 4: Paid: 1 | Served: 1 | Unhappy departures: 0 | Revenue: $9.00 | Paid satisfaction: 92.0
+Start turn 5: Happy Hour [on | off]: 
+Turn 5/18 | Paid: 1 | Served: 1 | Unhappy departures: 0 | Revenue: $9.00 | Paid satisfaction: 92.0
+Waiting queue: empty
+Table 1: free
+Table 2: C2
+C1 Regular | PAID | satisfaction 92 | Salad PAID, remaining prep 0, locked bill $9.00
+C2 VIP | SEATED | satisfaction 100 | Burger READY, remaining prep 0, locked bill $10.80
+Happy Hour remaining: 1 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 5: Paid: 1 | Served: 2 | Unhappy departures: 0 | Revenue: $9.00 | Paid satisfaction: 92.0
+Start turn 6: Happy Hour [on | off]: 
+Turn 6/18 | Paid: 1 | Served: 2 | Unhappy departures: 0 | Revenue: $9.00 | Paid satisfaction: 92.0
+Waiting queue: empty
+Table 1: free
+Table 2: C2
+C1 Regular | PAID | satisfaction 92 | Salad PAID, remaining prep 0, locked bill $9.00
+C2 VIP | EATING | satisfaction 100 | Burger SERVED, remaining prep 0, locked bill $10.80
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 6: Paid: 1 | Served: 2 | Unhappy departures: 0 | Revenue: $9.00 | Paid satisfaction: 92.0
+Start turn 7: Happy Hour [on | off]: 
+Turn 7/18 | Paid: 1 | Served: 2 | Unhappy departures: 0 | Revenue: $9.00 | Paid satisfaction: 92.0
+Waiting queue: C3 
+Table 1: free
+Table 2: C2
+C1 Regular | PAID | satisfaction 92 | Salad PAID, remaining prep 0, locked bill $9.00
+C2 VIP | READY_TO_PAY | satisfaction 100 | Burger SERVED, remaining prep 0, locked bill $10.80
+C3 Critic | WAITING | satisfaction 100 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 7: Paid: 2 | Served: 2 | Unhappy departures: 0 | Revenue: $19.80 | Paid satisfaction: 96.0
+Start turn 8: Happy Hour [on | off]: 
+Turn 8/18 | Paid: 2 | Served: 2 | Unhappy departures: 0 | Revenue: $19.80 | Paid satisfaction: 96.0
+Waiting queue: empty
+Table 1: C3
+Table 2: free
+C1 Regular | PAID | satisfaction 92 | Salad PAID, remaining prep 0, locked bill $9.00
+C2 VIP | PAID | satisfaction 100 | Burger PAID, remaining prep 0, locked bill $10.80
+C3 Critic | SEATED | satisfaction 88 | Salad + Pasta PREPARING, remaining prep 2, locked bill $24.30
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 8: Paid: 2 | Served: 2 | Unhappy departures: 0 | Revenue: $19.80 | Paid satisfaction: 96.0
+Start turn 9: Happy Hour [on | off]: 
+Turn 9/18 | Paid: 2 | Served: 2 | Unhappy departures: 0 | Revenue: $19.80 | Paid satisfaction: 96.0
+Waiting queue: empty
+Table 1: C3
+Table 2: free
+C1 Regular | PAID | satisfaction 92 | Salad PAID, remaining prep 0, locked bill $9.00
+C2 VIP | PAID | satisfaction 100 | Burger PAID, remaining prep 0, locked bill $10.80
+C3 Critic | SEATED | satisfaction 76 | Salad + Pasta PREPARING, remaining prep 1, locked bill $24.30
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 9: Paid: 2 | Served: 2 | Unhappy departures: 0 | Revenue: $19.80 | Paid satisfaction: 96.0
+Start turn 10: Happy Hour [on | off]: 
+Turn 10/18 | Paid: 2 | Served: 2 | Unhappy departures: 0 | Revenue: $19.80 | Paid satisfaction: 96.0
+Waiting queue: C4 
+Table 1: C3
+Table 2: free
+C1 Regular | PAID | satisfaction 92 | Salad PAID, remaining prep 0, locked bill $9.00
+C2 VIP | PAID | satisfaction 100 | Burger PAID, remaining prep 0, locked bill $10.80
+C3 Critic | SEATED | satisfaction 64 | Salad + Pasta READY, remaining prep 0, locked bill $24.30
+C4 Regular | WAITING | satisfaction 100 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 10: Paid: 2 | Served: 3 | Unhappy departures: 0 | Revenue: $19.80 | Paid satisfaction: 96.0
+Start turn 11: Happy Hour [on | off]: 
+Turn 11/18 | Paid: 2 | Served: 3 | Unhappy departures: 0 | Revenue: $19.80 | Paid satisfaction: 96.0
+Waiting queue: empty
+Table 1: C3
+Table 2: C4
+C1 Regular | PAID | satisfaction 92 | Salad PAID, remaining prep 0, locked bill $9.00
+C2 VIP | PAID | satisfaction 100 | Burger PAID, remaining prep 0, locked bill $10.80
+C3 Critic | EATING | satisfaction 64 | Salad + Pasta SERVED, remaining prep 0, locked bill $24.30
+C4 Regular | SEATED | satisfaction 92 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 11: Paid: 2 | Served: 3 | Unhappy departures: 0 | Revenue: $19.80 | Paid satisfaction: 96.0
+Start turn 12: Happy Hour [on | off]: 
+Turn 12/18 | Paid: 2 | Served: 3 | Unhappy departures: 0 | Revenue: $19.80 | Paid satisfaction: 96.0
+Waiting queue: empty
+Table 1: C3
+Table 2: C4
+C1 Regular | PAID | satisfaction 92 | Salad PAID, remaining prep 0, locked bill $9.00
+C2 VIP | PAID | satisfaction 100 | Burger PAID, remaining prep 0, locked bill $10.80
+C3 Critic | READY_TO_PAY | satisfaction 64 | Salad + Pasta SERVED, remaining prep 0, locked bill $24.30
+C4 Regular | SEATED | satisfaction 84 | Salad + Pasta PREPARING, remaining prep 2, locked bill $24.30
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 12: Paid: 3 | Served: 3 | Unhappy departures: 0 | Revenue: $44.10 | Paid satisfaction: 85.33333333333333
+Start turn 13: Happy Hour [on | off]: 
+Turn 13/18 | Paid: 3 | Served: 3 | Unhappy departures: 0 | Revenue: $44.10 | Paid satisfaction: 85.33333333333333
+Waiting queue: C5 
+Table 1: free
+Table 2: C4
+C1 Regular | PAID | satisfaction 92 | Salad PAID, remaining prep 0, locked bill $9.00
+C2 VIP | PAID | satisfaction 100 | Burger PAID, remaining prep 0, locked bill $10.80
+C3 Critic | PAID | satisfaction 64 | Salad + Pasta PAID, remaining prep 0, locked bill $24.30
+C4 Regular | SEATED | satisfaction 76 | Salad + Pasta PREPARING, remaining prep 1, locked bill $24.30
+C5 Regular | WAITING | satisfaction 100 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 13: Paid: 3 | Served: 3 | Unhappy departures: 0 | Revenue: $44.10 | Paid satisfaction: 85.33333333333333
+Start turn 14: Happy Hour [on | off]: 
+Turn 14/18 | Paid: 3 | Served: 3 | Unhappy departures: 0 | Revenue: $44.10 | Paid satisfaction: 85.33333333333333
+Waiting queue: empty
+Table 1: C5
+Table 2: C4
+C1 Regular | PAID | satisfaction 92 | Salad PAID, remaining prep 0, locked bill $9.00
+C2 VIP | PAID | satisfaction 100 | Burger PAID, remaining prep 0, locked bill $10.80
+C3 Critic | PAID | satisfaction 64 | Salad + Pasta PAID, remaining prep 0, locked bill $24.30
+C4 Regular | SEATED | satisfaction 68 | Salad + Pasta READY, remaining prep 0, locked bill $24.30
+C5 Regular | SEATED | satisfaction 92 | Salad TAKEN, remaining prep 1, locked bill $9.00
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 14: Paid: 3 | Served: 4 | Unhappy departures: 0 | Revenue: $44.10 | Paid satisfaction: 85.33333333333333
+Start turn 15: Happy Hour [on | off]: 
+Turn 15/18 | Paid: 3 | Served: 4 | Unhappy departures: 0 | Revenue: $44.10 | Paid satisfaction: 85.33333333333333
+Waiting queue: empty
+Table 1: C5
+Table 2: C4
+C1 Regular | PAID | satisfaction 92 | Salad PAID, remaining prep 0, locked bill $9.00
+C2 VIP | PAID | satisfaction 100 | Burger PAID, remaining prep 0, locked bill $10.80
+C3 Critic | PAID | satisfaction 64 | Salad + Pasta PAID, remaining prep 0, locked bill $24.30
+C4 Regular | EATING | satisfaction 68 | Salad + Pasta SERVED, remaining prep 0, locked bill $24.30
+C5 Regular | SEATED | satisfaction 84 | Salad READY, remaining prep 0, locked bill $9.00
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 15: Paid: 3 | Served: 5 | Unhappy departures: 0 | Revenue: $44.10 | Paid satisfaction: 85.33333333333333
+Start turn 16: Happy Hour [on | off]: 
+Turn 16/18 | Paid: 3 | Served: 5 | Unhappy departures: 0 | Revenue: $44.10 | Paid satisfaction: 85.33333333333333
+Waiting queue: C6 
+Table 1: C5
+Table 2: C4
+C1 Regular | PAID | satisfaction 92 | Salad PAID, remaining prep 0, locked bill $9.00
+C2 VIP | PAID | satisfaction 100 | Burger PAID, remaining prep 0, locked bill $10.80
+C3 Critic | PAID | satisfaction 64 | Salad + Pasta PAID, remaining prep 0, locked bill $24.30
+C4 Regular | READY_TO_PAY | satisfaction 68 | Salad + Pasta SERVED, remaining prep 0, locked bill $24.30
+C5 Regular | EATING | satisfaction 84 | Salad SERVED, remaining prep 0, locked bill $9.00
+C6 Regular | WAITING | satisfaction 100 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 16: Paid: 4 | Served: 5 | Unhappy departures: 0 | Revenue: $68.40 | Paid satisfaction: 81.0
+Start turn 17: Happy Hour [on | off]: 
+Turn 17/18 | Paid: 4 | Served: 5 | Unhappy departures: 0 | Revenue: $68.40 | Paid satisfaction: 81.0
+Waiting queue: C6 
+Table 1: C5
+Table 2: free
+C1 Regular | PAID | satisfaction 92 | Salad PAID, remaining prep 0, locked bill $9.00
+C2 VIP | PAID | satisfaction 100 | Burger PAID, remaining prep 0, locked bill $10.80
+C3 Critic | PAID | satisfaction 64 | Salad + Pasta PAID, remaining prep 0, locked bill $24.30
+C4 Regular | PAID | satisfaction 68 | Salad + Pasta PAID, remaining prep 0, locked bill $24.30
+C5 Regular | READY_TO_PAY | satisfaction 84 | Salad SERVED, remaining prep 0, locked bill $9.00
+C6 Regular | WAITING | satisfaction 92 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 17: Paid: 5 | Served: 5 | Unhappy departures: 0 | Revenue: $77.40 | Paid satisfaction: 81.6
+Start turn 18: Happy Hour [on | off]: 
+Turn 18/18 | Paid: 5 | Served: 5 | Unhappy departures: 0 | Revenue: $77.40 | Paid satisfaction: 81.6
+Waiting queue: C6 
+Table 1: free
+Table 2: free
+C1 Regular | PAID | satisfaction 92 | Salad PAID, remaining prep 0, locked bill $9.00
+C2 VIP | PAID | satisfaction 100 | Burger PAID, remaining prep 0, locked bill $10.80
+C3 Critic | PAID | satisfaction 64 | Salad + Pasta PAID, remaining prep 0, locked bill $24.30
+C4 Regular | PAID | satisfaction 68 | Salad + Pasta PAID, remaining prep 0, locked bill $24.30
+C5 Regular | PAID | satisfaction 84 | Salad PAID, remaining prep 0, locked bill $9.00
+C6 Regular | WAITING | satisfaction 84 | no order
+Happy Hour remaining: 0 active turns including this turn.
+Available staff: Host 1 seating; Waiter 1 task; Chef 1 prep unit; Cashier 1 automatic eligible payment.
+Host [seat ID | wait]: Waiter [seat ID | order ID | serve ID | wait]: Chef [cook ID | wait]: End turn 18: Paid: 5 | Served: 5 | Unhappy departures: 0 | Revenue: $77.40 | Paid satisfaction: 81.6
+FINAL: VICTORY
+Paid: 5 | Served: 5 | Unhappy departures: 0 | Revenue: $77.40 | Paid satisfaction: 81.6 | Turns used: 18
+C1 Regular | PAID | satisfaction 92 | Salad PAID, remaining prep 0, locked bill $9.00
+C2 VIP | PAID | satisfaction 100 | Burger PAID, remaining prep 0, locked bill $10.80
+C3 Critic | PAID | satisfaction 64 | Salad + Pasta PAID, remaining prep 0, locked bill $24.30
+C4 Regular | PAID | satisfaction 68 | Salad + Pasta PAID, remaining prep 0, locked bill $24.30
+C5 Regular | PAID | satisfaction 84 | Salad PAID, remaining prep 0, locked bill $9.00
+C6 Regular | WAITING | satisfaction 76 | no order

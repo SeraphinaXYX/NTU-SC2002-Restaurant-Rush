@@ -1,0 +1,44 @@
+PASS combo 2430 cents / 3 units
+PASS VIP alone 1350 cents
+PASS Happy Hour starts with two turns
+PASS VIP then Happy Hour 1080 cents
+PASS combo plus Happy Hour 1944 cents
+PASS Happy Hour second turn
+PASS Happy Hour expires
+PASS discounted order remains frozen after expiry
+PASS Happy Hour cannot be reused
+PASS failed activation does not advance turn
+PASS polymorphic losses 8 / 5 / 12
+PASS recovery capped at 100
+PASS Critic selects longest preparation combo
+PASS unserved customer abandons at zero
+PASS abandonment cancels unpaid order
+PASS departed customer immune to recovery
+PASS Waiter one task per turn
+PASS Pasta t2 one unit remains
+PASS Chef one unit per turn
+PASS Pasta t3 READY
+PASS cannot serve in readiness turn
+PASS invalid service preserves task
+PASS Pasta t4 EATING
+PASS Pasta waits exactly three turns
+PASS table occupied until payment
+PASS Pasta t5 READY_TO_PAY not chargeable
+PASS cannot charge in READY_TO_PAY transition turn
+PASS Pasta t6 payment 1800 cents / 76 satisfaction
+PASS payment releases table
+PASS paid customer and payment snapshot immune
+PASS invalid Host ID rejects
+PASS invalid Host action preserves phase
+PASS invalid Waiter action rejects
+PASS invalid Waiter action preserves phase
+PASS Host seat plus Waiter order in same turn
+PASS unpaid order excluded from revenue
+PASS prior order frozen through Happy Hour activation
+PASS controller does not collect prematurely
+PASS controller payment records recovered satisfaction
+PASS exact victory boundaries
+PASS paid count threshold
+PASS revenue threshold
+PASS unrounded satisfaction threshold
+CHECKS=43

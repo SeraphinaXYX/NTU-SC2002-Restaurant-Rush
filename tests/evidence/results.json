@@ -1,0 +1,186 @@
+{
+  "status": "passed",
+  "mode": "verify",
+  "java": "openjdk version \"11.0.29\" 2025-10-21 LTS\nOpenJDK Runtime Environment Corretto-11.0.29.7.1 (build 11.0.29+7-LTS)\nOpenJDK 64-Bit Server VM Corretto-11.0.29.7.1 (build 11.0.29+7-LTS, mixed mode)",
+  "compiler": "javac 11.0.29",
+  "compile_options": [
+    "--release",
+    "11",
+    "-Xlint:all"
+  ],
+  "cases": [
+    {
+      "case": "stage1-victory",
+      "code_revision": "053e096e16a8043fb012c5506fa8d0b3c72d4bc6",
+      "base_revision": "053e096e16a8043fb012c5506fa8d0b3c72d4bc6",
+      "source_sha256": "b78115117ea7324de2b36c35a2fea2464fd57e9672a40c124acf87588028b5c3",
+      "input_sha256": "dd6b64e8c55f63df43814a288de8e3414e3f5c58b974f667c4cbc69370e0e4d8",
+      "transcript_sha256": "cff59b75e33aaf77d92806ceb74c9c0fee6d1af357f8f3dc938336a80d1c831e",
+      "metrics": {
+        "paid": 5,
+        "served": 5,
+        "departures": 0,
+        "revenue_cents": 6600,
+        "paid_satisfaction_display": "79.2",
+        "turns": 18
+      },
+      "status": "passed"
+    },
+    {
+      "case": "stage1-defeat",
+      "code_revision": "053e096e16a8043fb012c5506fa8d0b3c72d4bc6",
+      "base_revision": "053e096e16a8043fb012c5506fa8d0b3c72d4bc6",
+      "source_sha256": "b78115117ea7324de2b36c35a2fea2464fd57e9672a40c124acf87588028b5c3",
+      "input_sha256": "9bb3f80c1d23dd1724c3771fdfa5a3d298c45303e65c55fda5c38afd50174322",
+      "transcript_sha256": "e3951d09c6234a519a7454dfb317dfb008501046c68e1977bee21d94a8986b52",
+      "metrics": {
+        "paid": 0,
+        "served": 0,
+        "departures": 2,
+        "revenue_cents": 0,
+        "paid_satisfaction_display": "N/A",
+        "turns": 18
+      },
+      "status": "passed"
+    },
+    {
+      "case": "stage2-victory",
+      "code_revision": "feb7e6abcf17856f9b6a12c3e904293fd42ee852",
+      "base_revision": "feb7e6abcf17856f9b6a12c3e904293fd42ee852",
+      "source_sha256": "9674b4857dd39842f5ea8051b3b603480046391314a5524d0d24d7bda1fb81bf",
+      "input_sha256": "dd6b64e8c55f63df43814a288de8e3414e3f5c58b974f667c4cbc69370e0e4d8",
+      "transcript_sha256": "f98b5d35f5280a005af30c27816d48e297f2a22caa686415cd6b33e0f4406bcd",
+      "metrics": {
+        "paid": 5,
+        "served": 5,
+        "departures": 0,
+        "revenue_cents": 6450,
+        "paid_satisfaction_display": "78.0",
+        "turns": 18
+      },
+      "status": "passed"
+    },
+    {
+      "case": "stage2-defeat",
+      "code_revision": "feb7e6abcf17856f9b6a12c3e904293fd42ee852",
+      "base_revision": "feb7e6abcf17856f9b6a12c3e904293fd42ee852",
+      "source_sha256": "9674b4857dd39842f5ea8051b3b603480046391314a5524d0d24d7bda1fb81bf",
+      "input_sha256": "9bb3f80c1d23dd1724c3771fdfa5a3d298c45303e65c55fda5c38afd50174322",
+      "transcript_sha256": "5de7dfc046211a2d0ca870320c8850335bf364ac103f475a6204f33bd29c2476",
+      "metrics": {
+        "paid": 0,
+        "served": 0,
+        "departures": 2,
+        "revenue_cents": 0,
+        "paid_satisfaction_display": "N/A",
+        "turns": 18
+      },
+      "status": "passed"
+    },
+    {
+      "case": "stage3-victory",
+      "code_revision": "bae23ff8be8ab3b4307a4b46b91bb7a0dfdf9e6a",
+      "base_revision": "bae23ff8be8ab3b4307a4b46b91bb7a0dfdf9e6a",
+      "source_sha256": "a6f2774c2ab664a47918bf7814bd5a5cf1cfe9c9e9d33362d485e70fd61e1f49",
+      "input_sha256": "34bcfb3802040111a1cf3f1d63a811802a6fef1bc96adde2728ac741f583880a",
+      "transcript_sha256": "8c8355f697efda23c7779a9928c6256992acd8bdcc229d6b9d29485ff6d2eb10",
+      "metrics": {
+        "paid": 5,
+        "served": 5,
+        "departures": 0,
+        "revenue_cents": 7740,
+        "paid_satisfaction_display": "81.6",
+        "turns": 18
+      },
+      "status": "passed"
+    },
+    {
+      "case": "stage3-defeat",
+      "code_revision": "bae23ff8be8ab3b4307a4b46b91bb7a0dfdf9e6a",
+      "base_revision": "bae23ff8be8ab3b4307a4b46b91bb7a0dfdf9e6a",
+      "source_sha256": "a6f2774c2ab664a47918bf7814bd5a5cf1cfe9c9e9d33362d485e70fd61e1f49",
+      "input_sha256": "87c854a425066d880669bbb37fa373ce4f511d4b4266b9e1b2ff26dbc4c9358f",
+      "transcript_sha256": "882e49f52fc1413e91c3f74a91a2d8358c19aeab5278a2149fdc31dccbe8b511",
+      "metrics": {
+        "paid": 0,
+        "served": 0,
+        "departures": 2,
+        "revenue_cents": 0,
+        "paid_satisfaction_display": "N/A",
+        "turns": 18
+      },
+      "status": "passed"
+    },
+    {
+      "case": "head-victory",
+      "code_revision": "e52579a3bacfc8b41267948b18487a578d9f9682",
+      "base_revision": "b62d196d392b8c998c22690af98ade03df30b5bf",
+      "source_sha256": "f9583ac910d1d9012b2f5f7dcca9e34c03191cc2dcbca2fc0f00b2465ba96fbe",
+      "input_sha256": "34bcfb3802040111a1cf3f1d63a811802a6fef1bc96adde2728ac741f583880a",
+      "transcript_sha256": "33192267f63222ec2d28d2180f3972e709ef3f9b38d16add24c698ce794ee10c",
+      "metrics": {
+        "paid": 5,
+        "served": 5,
+        "departures": 0,
+        "revenue_cents": 7740,
+        "paid_satisfaction_display": "81.6",
+        "turns": 18
+      },
+      "status": "passed"
+    },
+    {
+      "case": "head-defeat",
+      "code_revision": "e52579a3bacfc8b41267948b18487a578d9f9682",
+      "base_revision": "b62d196d392b8c998c22690af98ade03df30b5bf",
+      "source_sha256": "f9583ac910d1d9012b2f5f7dcca9e34c03191cc2dcbca2fc0f00b2465ba96fbe",
+      "input_sha256": "87c854a425066d880669bbb37fa373ce4f511d4b4266b9e1b2ff26dbc4c9358f",
+      "transcript_sha256": "882e49f52fc1413e91c3f74a91a2d8358c19aeab5278a2149fdc31dccbe8b511",
+      "metrics": {
+        "paid": 0,
+        "served": 0,
+        "departures": 2,
+        "revenue_cents": 0,
+        "paid_satisfaction_display": "N/A",
+        "turns": 18
+      },
+      "status": "passed"
+    },
+    {
+      "case": "head-invalid",
+      "code_revision": "e52579a3bacfc8b41267948b18487a578d9f9682",
+      "base_revision": "b62d196d392b8c998c22690af98ade03df30b5bf",
+      "source_sha256": "f9583ac910d1d9012b2f5f7dcca9e34c03191cc2dcbca2fc0f00b2465ba96fbe",
+      "input_sha256": "53132456cdf01d7f23dd240afe99418c848025a8945fa810904460a620984489",
+      "transcript_sha256": "a62f75dd8aec58dcc8caa3a95639dc3f4137f35e35b4c9e80313a6a80b5fc6c7",
+      "metrics": {
+        "paid": 5,
+        "served": 5,
+        "departures": 0,
+        "revenue_cents": 7740,
+        "paid_satisfaction_display": "81.6",
+        "turns": 18
+      },
+      "status": "passed"
+    },
+    {
+      "case": "head-no-happy-hour",
+      "code_revision": "e52579a3bacfc8b41267948b18487a578d9f9682",
+      "base_revision": "b62d196d392b8c998c22690af98ade03df30b5bf",
+      "source_sha256": "f9583ac910d1d9012b2f5f7dcca9e34c03191cc2dcbca2fc0f00b2465ba96fbe",
+      "input_sha256": "1e6a09424ace490f6f967d49e66e23416f625038c227f522b13cfec8984d835d",
+      "transcript_sha256": "a43105cae092f99ca1a4108fcba4ab30368b3366474eda6e30dc6525a6b8de4f",
+      "metrics": {
+        "paid": 5,
+        "served": 5,
+        "departures": 0,
+        "revenue_cents": 8010,
+        "paid_satisfaction_display": "80.6",
+        "turns": 18
+      },
+      "status": "passed"
+    }
+  ],
+  "domain_checks": 43,
+  "temporary_peak_bytes": 260592,
+  "temporary_directory_removed": true
+}
