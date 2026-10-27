@@ -1,0 +1,77 @@
+\section{UML Class Diagrams}
+\label{sec:class}
+We show key fields and operations and omit routine getters and constructors.
+\texttt{+}, \texttt{-} and \texttt{\#} mean public, private and protected.
+Underlining marks static members. Fields marked \texttt{final} cannot be reassigned.
+A hollow triangle denotes inheritance, a filled diamond composition, a hollow
+diamond aggregation, an arrow association, and a dashed arrow dependency.
+Multiplicities describe one running game. State holders are classes of public
+static final String constants, not Java enums.
+
+\tikzset{
+ rrinherit/.style={-{Triangle[open,length=7pt,width=7pt]}},
+ rrcomp/.style={{Diamond[length=7pt,width=6pt]}-{Stealth[length=5pt]}},
+ rraggr/.style={{Diamond[open,length=7pt,width=6pt]}-{Stealth[length=5pt]}},
+ rrassoc/.style={-{Stealth[length=5pt]}},
+ rrdep/.style={dashed,-{Stealth[open,length=5pt]}},
+ rrlabel/.style={font=\sffamily\scriptsize,fill=white,inner sep=2pt}}
+
+\subsection{Stage 1 class diagram}
+
+\begin{figure}[p]
+\centering
+\resizebox{\linewidth}{!}{\begin{tikzpicture}[x=1cm,y=0.85cm,
+ rrbox/.style={draw=black!70,fill=classbg,font=\sffamily\small,
+ minimum width=3cm,minimum height=0.65cm,align=center},
+ rrmul/.style={font=\sffamily\scriptsize,fill=white,inner sep=1.3pt}]
+%% boundary & control
+\node[rrbox,fill=boundarybg] (cli) at (0,0) {GameCLI};
+\node[rrbox,fill=controlbg] (ctrl) at (5,0) {GameController};
+\node[rrbox] (main) at (0,2) {Main};
+\node[rrbox] (result) at (10,0) {GameResult};
+\draw[rrdep] (main.south) -- (cli.north);
+\draw[rrassoc] (cli.east) -- node[rrmul,above]{1} (ctrl.west);
+\draw[rrdep] (ctrl.east) -- node[rrmul,above]{creates} (result.west);
+%% staff hierarchy
+\node[rrbox,fill=abstractbg] (staff) at (0,-3) {Staff (abstract)};
+\node[rrbox] (waiter) at (-3.5,-5) {Waiter};
+\node[rrbox] (chef) at (0,-5) {Chef};
+\node[rrbox] (cashier) at (3.5,-5) {Cashier};
+\draw[rrinherit] (waiter.north) -- ++(0,0.5) -| (staff.south);
+\draw[rrinherit] (chef.north) -- (staff.south);
+\draw[rrinherit] (cashier.north) -- ++(0,0.5) -| (staff.south);
+%% domain entities
+\node[rrbox] (customer) at (8,-3) {Customer};
+\node[rrbox] (order) at (12,-3) {Order};
+\node[rrbox] (table) at (8,-5) {Table};
+\node[rrbox] (menu) at (12,-6) {Menu};
+\node[rrbox] (menuitem) at (12,-8) {MenuItem};
+\node[rrbox] (payment) at (8,-8) {PaymentRecord};
+%% relationships
+\draw[rrcomp] (customer.east) -- node[rrmul,above]{0..1} (order.west);
+\draw[rrassoc] (table.east) -- ++(0.8,0) |- node[rrmul,right,near start]{0..1} (customer.east);
+\draw[rrdep] (customer.south) -- node[rrmul,right]{creates} (payment.north);
+\draw[rraggr] (menu.south) -- node[rrmul,right]{3} (menuitem.north);
+\draw[rrassoc] (order.south) -- ++(0,-1) -| node[rrmul,left,near end]{1} (menuitem.north east);
+%% ownership from controller
+\draw[rrcomp] (ctrl.south) -- ++(0,-0.5) -| node[rrmul,left,near end]{1} (waiter.north west);
+\draw[rrcomp] (ctrl.south) -- ++(0,-0.5) -| (chef.north);
+\draw[rrcomp] (ctrl.south) -- ++(0,-0.5) -| node[rrmul,right,near end]{1} (cashier.north east);
+\draw[rrcomp] (ctrl.south) -- ++(0,-0.5) -| node[rrmul,left,near end]{0..6} (customer.north);
+\draw[rrcomp] (ctrl.south) -- ++(0,-0.5) -| node[rrmul,left,near end]{2} (table.north);
+\draw[rrcomp] (ctrl.south) -- ++(0,-0.5) -| node[rrmul,right,near end]{1} (menu.north);
+%% constants
+\node[rrbox,fill=enumbg,font=\sffamily\footnotesize] (cs) at (4,-8) {CustomerStatus};
+\node[rrbox,fill=enumbg,font=\sffamily\footnotesize] (os) at (4,-9.5) {OrderStatus};
+\node[rrbox,fill=enumbg,font=\sffamily\footnotesize] (tp) at (4,-11) {TurnPhase};
+\draw[rrdep] (customer.south west) -- (cs.east);
+\draw[rrdep] (order.south) -- ++(0,-3) -| (os.east);
+\draw[rrdep] (ctrl.south) -- ++(0,-8) -| (tp.north);
+\end{tikzpicture}}
+\caption{Stage~1 class diagram. Three concrete staff roles inherit the one-task availability
+from abstract Staff. Customer owns at most one Order; GameController owns all domain objects.
+The three String-constant holders act as state enumerations.
+17 classes total.}
+\label{fig:class-stage1}
+\end{figure}
+\clearpage

@@ -1,0 +1,64 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[a4paper,margin=2.2cm,headheight=15pt]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,decorations.markings,shapes.multipart,backgrounds}
+\usepackage{fancyhdr,hyperref,booktabs,tabularx,longtable,multirow,listings,xcolor,enumitem,float,caption,array,pdflscape,graphicx,parskip}
+\definecolor{classbg}{HTML}{E8F0FE}
+\definecolor{abstractbg}{HTML}{FFF3E0}
+\definecolor{interfacebg}{HTML}{E8F5E9}
+\definecolor{enumbg}{HTML}{F3E5F5}
+\definecolor{controlbg}{HTML}{FCE4EC}
+\definecolor{boundarybg}{HTML}{E0F7FA}
+\definecolor{codebg}{HTML}{F5F5F5}
+\definecolor{darkblue}{HTML}{17324D}
+\definecolor{linkblue}{HTML}{1565C0}
+\hypersetup{colorlinks=true,linkcolor=darkblue,urlcolor=linkblue,pdftitle={Restaurant Rush -- design and development report}}
+\captionsetup{font=small,labelfont=bf}
+\renewcommand{\arraystretch}{1.15}
+\setlist[itemize]{nosep,leftmargin=*}
+\setlength{\emergencystretch}{3em}
+\lstset{basicstyle=\ttfamily\small,backgroundcolor=\color{codebg},frame=single,breaklines=true,columns=fullflexible}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small SC2002 Restaurant Rush}
+\fancyhead[R]{\small\nouppercase{\leftmark}}
+\fancyfoot[R]{\small\thepage}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[R]{\small\thepage}}
+\begin{document}
+\begin{titlepage}
+\centering
+\vspace*{1.5cm}
+{\large Nanyang Technological University\par}
+\vspace{0.8cm}
+{\large SC2002 Object-Oriented Design \& Programming\par}
+\vspace{1.3cm}
+{\Huge\bfseries Restaurant Rush\par}
+\vspace{0.4cm}
+{\Large Design and development report\par}
+\vspace{0.8cm}
+{\large November 2026\par}
+\vspace{1cm}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+Runtime & JDK 11 or later; offline command-line game\\
+Repository & \url{https://github.com/SeraphinaXYX/NTU-SC2002-Restaurant-Rush}\\
+Stage tags & \texttt{stage-1}, \texttt{stage-2}, \texttt{stage-3} (published)\\
+\bottomrule
+\end{tabularx}
+\vspace{1.2cm}
+\textbf{Group members}
+\vspace{0.3cm}
+
+\begin{tabularx}{\textwidth}{@{}l l l X@{}}
+\toprule
+\textbf{Name} & \textbf{Matric No.} & \textbf{Lab Group} & \textbf{Contribution} \\
+\midrule
+Liang Rui & \textit{[U2xxxxxxx]} & \textit{[FCSx\_Grpx]} & Stage 1 core, Stage 1 class diagram, design section \\
+Xie Yixuan & \textit{[U2xxxxxxx]} & & Stage 2 VIP/Critic, Stage 2 class diagram, reflections \\
+Angel Chua & \textit{[U2xxxxxxx]} & & Stage 3 features, Stage 3 class diagram, evolution section \\
+Zhu Yuean & \textit{[U2xxxxxxx]} & & Tests, sequence diagram, functional evidence \\
+\bottomrule
+\end{tabularx}
+\vfill
+\end{titlepage}
+\tableofcontents
+\clearpage
