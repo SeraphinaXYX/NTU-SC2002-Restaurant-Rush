@@ -75,3 +75,77 @@ The three String-constant holders act as state enumerations.
 \label{fig:class-stage1}
 \end{figure}
 \clearpage
+
+\subsection{Stage 2 class diagram}
+Stage~2 adds polymorphic customer types and a schedule that constructs
+them. Three new classes (shaded darker) extend the Stage~1 design without
+changing existing interfaces.
+
+\begin{figure}[p]
+\centering
+\resizebox{\linewidth}{!}{\begin{tikzpicture}[x=1cm,y=0.85cm,
+ rrbox/.style={draw=black!70,fill=classbg,font=\sffamily\small,
+ minimum width=3cm,minimum height=0.65cm,align=center},
+ rrnew/.style={draw=black!70,fill=orange!18,font=\sffamily\small,
+ minimum width=3cm,minimum height=0.65cm,align=center},
+ rrmul/.style={font=\sffamily\scriptsize,fill=white,inner sep=1.3pt}]
+%% boundary & control
+\node[rrbox,fill=boundarybg] (cli) at (0,0) {GameCLI};
+\node[rrbox,fill=controlbg] (ctrl) at (5,0) {GameController};
+\node[rrbox] (main) at (0,2) {Main};
+\node[rrbox] (result) at (10,0) {GameResult};
+\draw[rrdep] (main.south) -- (cli.north);
+\draw[rrassoc] (cli.east) -- node[rrmul,above]{1} (ctrl.west);
+\draw[rrdep] (ctrl.east) -- node[rrmul,above]{creates} (result.west);
+%% NEW: ArrivalSchedule
+\node[rrnew] (arr) at (10,2) {ArrivalSchedule \textit{(new)}};
+\draw[rrcomp] (ctrl.north east) -- ++(0,0.5) -| node[rrmul,right,near end]{1} (arr.south);
+%% staff hierarchy
+\node[rrbox,fill=abstractbg] (staff) at (0,-3) {Staff (abstract)};
+\node[rrbox] (waiter) at (-3.5,-5) {Waiter};
+\node[rrbox] (chef) at (0,-5) {Chef};
+\node[rrbox] (cashier) at (3.5,-5) {Cashier};
+\draw[rrinherit] (waiter.north) -- ++(0,0.5) -| (staff.south);
+\draw[rrinherit] (chef.north) -- (staff.south);
+\draw[rrinherit] (cashier.north) -- ++(0,0.5) -| (staff.south);
+%% domain entities
+\node[rrbox] (customer) at (8,-3) {Customer};
+\node[rrbox] (order) at (12,-3) {Order};
+\node[rrbox] (table) at (8,-5) {Table};
+\node[rrbox] (menu) at (12,-6) {Menu};
+\node[rrbox] (menuitem) at (12,-8) {MenuItem};
+\node[rrbox] (payment) at (8,-8) {PaymentRecord};
+%% NEW: VIP and Critic
+\node[rrnew] (vip) at (6.5,-6.5) {VIPCustomer \textit{(new)}};
+\node[rrnew] (critic) at (10,-6.5) {CriticCustomer \textit{(new)}};
+\draw[rrinherit] (vip.north) -- ++(0,0.5) -| (customer.south);
+\draw[rrinherit] (critic.north) -- ++(0,0.5) -| (customer.south east);
+%% relationships
+\draw[rrcomp] (customer.east) -- node[rrmul,above]{0..1} (order.west);
+\draw[rrassoc] (table.east) -- ++(0.8,0) |- node[rrmul,right,near start]{0..1} (customer.east);
+\draw[rrdep] (customer.south west) -- ++(0,-3.5) -| (payment.south);
+\draw[rraggr] (menu.south) -- node[rrmul,right]{3} (menuitem.north);
+\draw[rrassoc] (order.south) -- ++(0,-1) -| node[rrmul,left,near end]{1} (menuitem.north east);
+%% ownership from controller
+\draw[rrcomp] (ctrl.south) -- ++(0,-0.5) -| node[rrmul,left,near end]{1} (waiter.north west);
+\draw[rrcomp] (ctrl.south) -- ++(0,-0.5) -| (chef.north);
+\draw[rrcomp] (ctrl.south) -- ++(0,-0.5) -| node[rrmul,right,near end]{1} (cashier.north east);
+\draw[rrcomp] (ctrl.south) -- ++(0,-0.5) -| node[rrmul,left,near end]{0..6} (customer.north);
+\draw[rrcomp] (ctrl.south) -- ++(0,-0.5) -| node[rrmul,left,near end]{2} (table.north);
+\draw[rrcomp] (ctrl.south) -- ++(0,-0.5) -| node[rrmul,right,near end]{1} (menu.north);
+%% constants
+\node[rrbox,fill=enumbg,font=\sffamily\footnotesize] (cs) at (4,-9) {CustomerStatus};
+\node[rrbox,fill=enumbg,font=\sffamily\footnotesize] (os) at (4,-10.5) {OrderStatus};
+\node[rrbox,fill=enumbg,font=\sffamily\footnotesize] (tp) at (4,-12) {TurnPhase};
+\draw[rrdep] (customer.south west) -- ++(0,-4) -| (cs.east);
+\draw[rrdep] (order.south) -- ++(0,-3.5) -| (os.east);
+\draw[rrdep] (ctrl.south) -- ++(0,-9) -| (tp.north);
+\end{tikzpicture}}
+\caption{Stage~2 class diagram. Shaded boxes are new. ArrivalSchedule constructs VIP and
+Critic subclasses via a factory method. VIPCustomer overrides patience loss and adds a
+10\% bill discount; CriticCustomer overrides meal selection to prefer the most expensive
+well-prepared dish. Existing Customer references dispatch the differing rules via polymorphism.
+20 classes total (+3 from Stage~1).}
+\label{fig:class-stage2}
+\end{figure}
+\clearpage
