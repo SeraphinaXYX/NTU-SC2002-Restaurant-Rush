@@ -149,3 +149,317 @@ well-prepared dish. Existing Customer references dispatch the differing rules vi
 \label{fig:class-stage2}
 \end{figure}
 \clearpage
+
+\subsection{Stage 3 class diagrams (detailed views)}
+The following complementary views describe the final Stage~3 implementation.
+They share class names across views; repeated boxes refer to the same classes.
+Figure~\ref{fig:class-relationships} gathers the ownership, associations and state dependencies.
+
+\tikzset{
+ rrclass/.style={rectangle split,rectangle split parts=3,
+ rectangle split part fill={classbg,white,white},draw=black!70,
+ font=\ttfamily\scriptsize,text width=6.2cm,align=left,inner sep=4pt,
+ rectangle split part align={center,left,left}}}
+
+\begin{figure}[p]
+\centering
+\resizebox{\linewidth}{!}{\begin{tikzpicture}
+\node[rrclass,anchor=north west] (main) at (0,0) {\textbf{Main}
+\nodepart{second}(no fields shown)
+\nodepart{third}\underline{+ main(args: String[]): void}};
+\node[rrclass,anchor=north west] (cli) at (0,-2.5) {\textbf{GameCLI}
+\nodepart{second}- game: GameController {final}\\
+- input: Scanner {final}\\
+- inputEnded: boolean
+\nodepart{third}+ run(): void\\
+- beginTurn(): void\\
+- choose(line: String, role: String): void\\
+- displayState(): void};
+\node[rrclass,anchor=north west] (ctrl) at (7,0) {\textbf{GameController}
+\nodepart{second}\underline{+ STAGE: int = 3}\\
+\underline{+ MAX\_TURNS: int = 18}\\
+- menu: Menu {final}\\
+- customers: ArrayList$<$Customer$>$ {final}\\
+- tables: ArrayList$<$Table$>$ {final}\\
+- payments: ArrayList$<$PaymentRecord$>$ {final}\\
+- arrivals: ArrivalSchedule {final}\\
+- happyHour: HappyHour {final}\\
+- host: Host {final}\\
+- waiter: Waiter {final}\\
+- chef: Chef {final}\\
+- cashier: Cashier {final}\\
+- turn: int\\
+- phase: String
+\nodepart{third}+ beginTurn(): void\\
++ beginTurn(activateHappyHour: boolean): void\\
++ seatWithHost(id: int): void\\
++ waitHost(): void\\
++ seatCustomer(id: int): void\\
++ takeOrder(id: int): void\\
++ serveCustomer(id: int): void\\
++ waitWaiter(): void\\
++ prepareOrder(id: int): void\\
++ waitChef(): void\\
++ finishTurn(): void\\
++ getResult(): GameResult\\
+- requirePhase(expected: String): void};
+\node[rrclass,anchor=north west] (arr) at (0,-6.6) {\textbf{ArrivalSchedule}
+\nodepart{second}(no fields shown)
+\nodepart{third}+ arrivalAt(turn: int): Customer};
+\node[rrclass,anchor=north west] (result) at (0,-8.7) {\textbf{GameResult}
+\nodepart{second}- paidCustomers: int {final}\\
+- revenueCents: int {final}\\
+- satisfactionTotal: int {final}
+\nodepart{third}+ isVictory(): boolean};
+\draw[rrdep] (main.south) -- (cli.north);
+\draw[rrassoc] (cli.east) -- node[rrlabel,above]{1} (ctrl.west);
+\draw[rrcomp] (ctrl.west |- arr.east) -- node[rrlabel,above]{1} (arr.east);
+\draw[rrdep] (ctrl.west |- result.east) -- node[rrlabel,above]{creates} (result.east);
+\end{tikzpicture}}
+\caption{Boundary and turn control. Main constructs the CLI and controller; GameCLI requests actions and catches invalid choices. GameResult checks all three thresholds using unrounded payment totals.}
+\label{fig:class-full}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\resizebox{\linewidth}{!}{\begin{tikzpicture}
+\node[rrclass,anchor=north west] (customer) at (0,0) {\textbf{Customer}
+\nodepart{second}- id: int {final}\\
+- arrivalTurn: int {final}\\
+- satisfaction: int\\
+- status: String\\
+- order: Order\\
+- servedTurn: int\\
+- readyToPayTurn: int
+\nodepart{third}+ chooseMeal(menu: Menu): MenuItem\\
++ seat(): void\\
++ placeOrder(newOrder: Order): void\\
++ serve(turn: int): void\\
++ finishEating(turn: int): void\\
++ canPay(turn: int): boolean\\
++ pay(turn: int): PaymentRecord\\
++ losePatience(): void\\
++ recoverSatisfaction(amount: int): void\\
++ getWaitingLoss(): int\\
++ discountedBill(baseCents: int): int};
+\node[rrclass,anchor=north west] (order) at (7,0) {\textbf{Order}
+\nodepart{second}- item: MenuItem {final}\\
+- billCents: int {final}\\
+- remainingUnits: int\\
+- readyTurn: int\\
+- status: String
+\nodepart{third}+ prepare(turn: int): void\\
++ serve(turn: int): void\\
++ markPaid(): void\\
++ cancel(): void};
+\node[rrclass,anchor=north west] (pay) at (7,-5.9) {\textbf{PaymentRecord}
+\nodepart{second}- customerId: int {final}\\
+- billCents: int {final}\\
+- satisfaction: int {final}\\
+- turn: int {final}
+\nodepart{third}+ getCustomerId(): int\\
++ getBillCents(): int\\
++ getSatisfaction(): int\\
++ getTurn(): int};
+\node[rrclass,anchor=north west] (vip) at (0,-10) {\textbf{VIPCustomer}
+\nodepart{second}(no fields shown)
+\nodepart{third}+ getWaitingLoss(): int\\
++ getType(): String\\
++ discountedBill(baseCents: int): int};
+\node[rrclass,anchor=north west] (critic) at (7,-10) {\textbf{CriticCustomer}
+\nodepart{second}(no fields shown)
+\nodepart{third}+ getWaitingLoss(): int\\
++ getType(): String\\
++ chooseMeal(menu: Menu): MenuItem};
+\draw[rrcomp] (customer.east) -- node[rrlabel,above]{1 owns 0..1} (order.west);
+\draw[rrdep] (customer.east |- pay.west) -- node[rrlabel,above]{creates at payment} (pay.west);
+\draw[rrinherit] (vip.north) -- (customer.south);
+\draw[rrinherit] (critic.north) -- ++(0,0.5) -| (customer.south east);
+\end{tikzpicture}}
+\caption{Customer and order lifecycle. Encapsulation: transition methods guard private state and timestamps. Composition: each Customer owns at most one Order. Polymorphism: Customer is the concrete Regular type; VIP and Critic override selected behaviour through Customer references. PaymentRecord preserves the bill and satisfaction at payment.}
+\label{fig:class-customers}
+\end{figure}
+\clearpage
+
+\begin{figure}[p]
+\centering
+\resizebox{\linewidth}{!}{\begin{tikzpicture}
+\node[rrclass,anchor=north west] (staff) at (0,0) {\textbf{Staff (abstract)}
+\nodepart{second}- available: boolean
+\nodepart{third}+ startTurn(): void {final}\\
++ isAvailable(): boolean {final}\\
+\# requireAvailable(): void {final}\\
+\# completeTask(): void {final}};
+\node[rrclass,anchor=north west] (host) at (0,-4) {\textbf{Host}
+\nodepart{second}(no fields shown)
+\nodepart{third}+ seat(customer: Customer,\\
+  table: Table): void};
+\node[rrclass,anchor=north west] (waiter) at (7,-4) {\textbf{Waiter}
+\nodepart{second}- pricing: PricingService {final}
+\nodepart{third}+ seat(customer: Customer,\\
+  table: Table): void\\
++ takeOrder(customer: Customer,\\
+  menu: Menu): void\\
++ serve(customer: Customer, turn: int): void};
+\node[rrclass,anchor=north west] (chef) at (0,-7.5) {\textbf{Chef}
+\nodepart{second}(no fields shown)
+\nodepart{third}+ prepare(customer: Customer,\\
+  turn: int): void};
+\node[rrclass,anchor=north west] (cash) at (0,-10.4) {\textbf{Cashier}
+\nodepart{second}(no fields shown)
+\nodepart{third}+ collectOldest(customers:\\
+  ArrayList$<$Customer$>$, turn: int):\\
+  PaymentRecord};
+\node[rrclass,anchor=north west] (price) at (7,-9) {\textbf{PricingService}
+\nodepart{second}- happyHour: HappyHour {final}
+\nodepart{third}+ quote(customer: Customer,\\
+  item: MenuItem): int};
+\node[rrclass,anchor=north west] (hh) at (7,-12.6) {\textbf{HappyHour}
+\nodepart{second}- currentTurn: int\\
+- activationTurn: int
+\nodepart{third}+ startTurn(turn: int, activate: boolean): void\\
++ hasBeenUsed(): boolean\\
++ isActive(): boolean\\
++ getRemainingTurns(): int};
+\draw[rrinherit] (host.north) -- (staff.south);
+\draw[rrinherit] (waiter.north) -- ++(0,0.5) |- (staff.east);
+\draw[rrinherit] (chef.west) -- ++(-0.5,0) |- (staff.west);
+\draw[rrinherit] (cash.west) -- ++(-0.8,0) |- (staff.west);
+\draw[rrassoc] (waiter.south) -- node[rrlabel,right]{1} (price.north);
+\draw[rrassoc] (price.south) -- node[rrlabel,right]{1} (hh.north);
+\end{tikzpicture}}
+\caption{Staff and pricing. Staff shares one-task availability without declaring an unrelated generic work operation. Host and Waiter depend on Table; Chef depends on Order; Cashier depends on Customer and creates no payment until a customer is eligible. PricingService references the same HappyHour owned by the controller.}
+\label{fig:class-staff}
+\end{figure}
+\clearpage
+
+\begin{figure}[p]
+\centering
+\resizebox{\linewidth}{!}{\begin{tikzpicture}
+\node[rrclass,anchor=north west] (menu) at (0,0) {\textbf{Menu}
+\nodepart{second}- items: ArrayList$<$MenuItem$>$ {final}
+\nodepart{third}\underline{+ withCombo(): Menu}\\
++ getItems(): ArrayList$<$MenuItem$>$};
+\node[rrclass,anchor=north west] (item) at (7,0) {\textbf{MenuItem}
+\nodepart{second}\underline{+ SALAD: MenuItem {final}}\\
+\underline{+ BURGER: MenuItem {final}}\\
+\underline{+ PASTA: MenuItem {final}}\\
+- name: String {final}\\
+- priceCents: int {final}\\
+- preparationUnits: int {final}
+\nodepart{third}+ getName(): String\\
++ getPriceCents(): int\\
++ getPreparationUnits(): int};
+\node[rrclass,anchor=north west] (combo) at (7,-5.6) {\textbf{ComboMeal}
+\nodepart{second}- first: MenuItem {final}\\
+- second: MenuItem {final}
+\nodepart{third}+ getComponents(): ArrayList$<$MenuItem$>$};
+\node[rrclass,anchor=north west] (table) at (0,-5.6) {\textbf{Table}
+\nodepart{second}- id: int {final}\\
+- occupant: Customer
+\nodepart{third}+ seat(customer: Customer): void\\
++ releaseIfFinished(): void\\
++ isFree(): boolean};
+\node[rrclass,anchor=north west] (cs) at (0,-10) {\textbf{CustomerStatus}
+\nodepart{second}\underline{+ WAITING, SEATED, EATING: String}\\
+\underline{+ READY\_TO\_PAY, PAID, LEFT: String}
+\nodepart{third}(no operations shown)};
+\node[rrclass,anchor=north west] (os) at (7,-10) {\textbf{OrderStatus}
+\nodepart{second}\underline{+ TAKEN, PREPARING, READY: String}\\
+\underline{+ SERVED, PAID, CANCELLED: String}
+\nodepart{third}(no operations shown)};
+\node[rrclass,anchor=north west] (phase) at (0,-13) {\textbf{TurnPhase}
+\nodepart{second}\underline{+ BETWEEN\_TURNS, HOST, WAITER: String}\\
+\underline{+ CHEF, END\_OF\_TURN, FINISHED: String}
+\nodepart{third}(no operations shown)};
+\draw[rraggr] (menu.east) -- node[rrlabel,above]{1 holds 4} (item.west);
+\draw[rrinherit] (combo.north) -- (item.south);
+\draw[rraggr] (combo.east) -- ++(0.7,0) |- node[rrlabel,right]{2 components} (item.east);
+\end{tikzpicture}}
+\caption{Menu, table and String constant holders. Menu items and combo components are shared immutable references, so hollow diamonds indicate aggregation. Each Table references 0..1 Customer; each Customer occupies 0..1 Table. An Order references exactly one MenuItem. Customer, Order and GameController depend on their respective status/phase constant classes. All constants shown are public static final; grouped names denote separate fields.}
+\label{fig:class-menu}
+\end{figure}
+\clearpage
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\resizebox{0.98\linewidth}{!}{%
+\begin{tikzpicture}[x=1cm,y=0.85cm,
+ rrbox/.style={draw=black!70,fill=classbg,font=\sffamily\small,
+ minimum width=3cm,minimum height=0.65cm,align=center},
+ rrmul/.style={font=\sffamily\scriptsize,fill=white,inner sep=1.3pt}]
+\node[font=\sffamily\bfseries] at (3,1) {Game-session ownership};
+\node[rrbox,fill=controlbg] (owner) at (0,-5.5) {GameController};
+\draw[{Diamond[length=7pt,width=6pt]}-] (owner.east) -- (2.5,-5.5);
+\node[rrmul,above] at (1.9,-5.5) {1};
+\draw (2.5,0) -- (2.5,-11);
+\node[rrbox] (owned0) at (5.1,0.0) {Table};
+\draw[rrassoc] (2.5,0.0) -- node[rrmul,above,near end] {2} (owned0.west);
+\node[rrbox] (owned1) at (5.1,-1.2) {Customer};
+\draw[rrassoc] (2.5,-1.2) -- node[rrmul,above,near end] {0..6} (owned1.west);
+\node[rrbox] (owned2) at (5.1,-2.4) {PaymentRecord};
+\draw[rrassoc] (2.5,-2.4) -- node[rrmul,above,near end] {0..5} (owned2.west);
+\node[rrbox] (owned3) at (5.1,-3.6) {Menu};
+\draw[rrassoc] (2.5,-3.6) -- node[rrmul,above,near end] {1} (owned3.west);
+\node[rrbox] (owned4) at (5.1,-4.8) {ArrivalSchedule};
+\draw[rrassoc] (2.5,-4.8) -- node[rrmul,above,near end] {1} (owned4.west);
+\node[rrbox] (owned5) at (5.1,-6.0) {HappyHour};
+\draw[rrassoc] (2.5,-6.0) -- node[rrmul,above,near end] {1} (owned5.west);
+\node[rrbox] (owned6) at (5.1,-7.2) {Host};
+\draw[rrassoc] (2.5,-7.2) -- node[rrmul,above,near end] {1} (owned6.west);
+\node[rrbox] (owned7) at (5.1,-8.4) {Waiter};
+\draw[rrassoc] (2.5,-8.4) -- node[rrmul,above,near end] {1} (owned7.west);
+\node[rrbox] (owned8) at (5.1,-9.6) {Chef};
+\draw[rrassoc] (2.5,-9.6) -- node[rrmul,above,near end] {1} (owned8.west);
+\node[rrbox] (owned9) at (5.1,-10.8) {Cashier};
+\draw[rrassoc] (2.5,-10.8) -- node[rrmul,above,near end] {1} (owned9.west);
+
+\node[font=\sffamily\bfseries] at (15,1) {Domain and state relationships};
+\node[rrbox] (rt) at (10,0) {Table};
+\node[rrbox] (rc) at (15,0) {Customer};
+\node[rrbox,fill=enumbg] (rcs) at (20,0) {CustomerStatus};
+\node[rrbox] (ro) at (15,-2.5) {Order};
+\node[rrbox,fill=enumbg] (ros) at (20,-2.5) {OrderStatus};
+\node[rrbox] (rm) at (10,-5) {Menu};
+\node[rrbox] (ri) at (15,-5) {MenuItem};
+\node[rrbox] (rcombo) at (20,-5) {ComboMeal};
+\node[rrbox] (rp) at (10,-8) {PricingService};
+\node[rrbox] (rh) at (15,-8) {HappyHour};
+\node[rrbox] (rw) at (10,-10.5) {Waiter};
+\node[rrbox,fill=controlbg] (rg) at (15,-10.5) {GameController};
+\node[rrbox,fill=enumbg] (rphase) at (20,-10.5) {TurnPhase};
+\draw[rrassoc] (rt.east) -- node[rrmul,above]{occupant}
+ node[rrmul,below,near start]{0..1} node[rrmul,below,near end]{0..1} (rc.west);
+\draw[rrcomp] (rc.south) -- node[rrmul,right,near start]{1}
+ node[rrmul,right,near end]{0..1} (ro.north);
+\draw[rrassoc] (ro.south) -- node[rrmul,right,near start]{0..*}
+ node[rrmul,right,near end]{1} (ri.north);
+\draw[rraggr] (rm.east) -- node[rrmul,above]{items}
+ node[rrmul,below,near start]{0..*} node[rrmul,below,near end]{3..4} (ri.west);
+\draw[rraggr] (rcombo.west) -- node[rrmul,above]{components}
+ node[rrmul,below,near start]{0..*} node[rrmul,below,near end]{2} (ri.east);
+\draw[rrassoc] (rp.east) -- node[rrmul,above]{happyHour}
+ node[rrmul,below,near start]{1} node[rrmul,below,near end]{1} (rh.west);
+\draw[rrassoc] (rw.north) -- node[rrmul,left,near start]{1}
+ node[rrmul,left,near end]{1} (rp.south);
+\draw[rrdep] (rc.east) -- (rcs.west);
+\draw[rrdep] (ro.east) -- (ros.west);
+\draw[rrdep] (rg.east) -- (rphase.west);
+\end{tikzpicture}}
+\caption{Relationship overview. The shared composition trunk on the left means that each
+listed object is owned by one GameController; numbers beside the destinations are
+per-game counts. On the right, endpoint numbers are association multiplicities.
+Menu and ComboMeal share immutable menu entries (hollow diamonds); Customer owns
+its Order (filled diamond). State dependencies point to String constant classes,
+not enums. Repeated names denote the same classes as in the detailed views.}
+\label{fig:class-relationships}
+\end{figure}
+\end{landscape}
+\clearpage
+\noindent\textbf{Implementation notes.} Menu returns a copy of its list, but the immutable
+menu entries are shared. GameController similarly returns container copies for
+customers, tables and payments. Customer, Order and Table enforce their own
+valid transitions; the CLI receives exceptions and retries the same role.
+The model deliberately uses ordinary classes, ArrayLists and loops rather than
+additional interfaces or a framework.
