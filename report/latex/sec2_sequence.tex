@@ -1,0 +1,181 @@
+\section{UML Sequence Diagrams}
+\label{sec:sequence}
+The scenario follows VIP C2, who arrives on turn 4 (with C1 at the first table and the second table free). The manager activates Happy
+Hour for turns 4--5 and asks the Host to seat C2, leaving the Waiter free to take
+an order in the same turn. Burger costs 1500 cents; VIP pricing gives 1350 and
+Happy Hour gives a locked bill of 1080 cents. After ordering succeeds, the CLI announces the meal, preparation and locked bill before asking for the Chef's task. The Chef finishes it on turn 4,
+the Waiter serves on turn 5, eating finishes on turn 6, and payment is eligible
+on turn 7 if no earlier eligible customer takes the Cashier's task.
+
+The three panels form one scenario and use real method names. Solid arrows are
+calls and dashed arrows are returns. Combined fragments carry guards; the
+horizontal dashed separator divides alternatives within one \textsf{alt} frame.
+Creation arrows meet a new object's header, and that object's lifeline starts
+there. Existing objects carry on across panels. Routine getters, availability
+resets and operations on other customers are omitted. The regenerated functional
+evidence checks the timing and payment values; these are deterministic choices,
+not seeded random draws.
+
+\tikzset{
+ rrlife/.style={dashed,black!45},
+ rrhead/.style={draw,fill=boundarybg,font=\sffamily\scriptsize,align=center,minimum height=0.6cm,text width=2.0cm},
+ rrmsg/.style={-{Stealth[length=4pt]}},
+ rrreturn/.style={dashed,-{Stealth[open,length=4pt]}},
+ rrtext/.style={font=\sffamily\scriptsize,fill=white,inner sep=1pt,align=center},
+ rrframe/.style={draw=black!65,thin},
+ rrguard/.style={font=\sffamily\scriptsize,anchor=north west,fill=white,inner sep=2pt}}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\resizebox{0.90\linewidth}{!}{\begin{tikzpicture}[x=1cm,y=0.8cm]
+\node[rrhead] (mgr) at (0.0,0) {:Manager};
+\draw[rrlife] (mgr.south) -- (0.0,-9.3);
+\node[rrhead] (cli) at (2.7,0) {:GameCLI};
+\draw[rrlife] (cli.south) -- (2.7,-9.3);
+\node[rrhead] (g) at (5.4,0) {:GameController};
+\draw[rrlife] (g.south) -- (5.4,-9.3);
+\node[rrhead] (hh) at (8.100000000000001,0) {:HappyHour};
+\draw[rrlife] (hh.south) -- (8.100000000000001,-9.3);
+\node[rrhead] (a) at (10.8,0) {:ArrivalSchedule};
+\draw[rrlife] (a.south) -- (10.8,-9.3);
+\node[rrhead] (host) at (13.5,0) {:Host};
+\draw[rrlife] (host.south) -- (13.5,-9.3);
+\node[rrhead] (t) at (16.200000000000003,0) {:Table};
+\draw[rrlife] (t.south) -- (16.200000000000003,-9.3);
+\node[rrhead] (c) at (18.900000000000002,-3.25) {C2:VIPCustomer};
+\draw[rrlife] (c.south) -- (18.900000000000002,-9.3);
+\draw[rrmsg] (mgr.center |- 0,-0.8) -- node[rrtext,above] {Happy Hour: on} (cli.center |- 0,-0.8);
+\draw[rrmsg] (cli.center |- 0,-1.4) -- node[rrtext,above] {beginTurn(true)} (g.center |- 0,-1.4);
+\draw[rrmsg] (g.center |- 0,-2) -- node[rrtext,above] {startTurn(4, true)} (hh.center |- 0,-2);
+\draw[rrmsg] (g.center |- 0,-2.6) -- node[rrtext,above] {arrivalAt(4)} (a.center |- 0,-2.6);
+\draw[rrmsg] (a.center |- 0,-3.25) -- node[rrtext,above] {new VIPCustomer(2, 4)} (c.west);
+\draw[rrreturn] (a.center |- 0,-3.9) -- node[rrtext,above] {C2} (g.center |- 0,-3.9);
+\draw[rrframe] (4.9,-4.2) rectangle (20.5,-5.5);
+\node[rrguard] at (4.9,-4.2) {opt [happyHour.isActive()]};
+\draw[rrmsg] (g.center |- 0,-4.95) -- node[rrtext,above] {recoverSatisfaction(15); capped at 100} (c.center |- 0,-4.95);
+\draw[rrmsg] (mgr.center |- 0,-5.95) -- node[rrtext,above] {Host: seat 2} (cli.center |- 0,-5.95);
+\draw[rrmsg] (cli.center |- 0,-6.55) -- node[rrtext,above] {seatWithHost(2)} (g.center |- 0,-6.55);
+\draw[rrmsg] (g.center |- 0,-7.15) -- node[rrtext,above] {seat(C2, freeTable())} (host.center |- 0,-7.15);
+\draw[rrmsg] (host.center |- 0,-7.75) -- node[rrtext,above] {seat(C2)} (t.center |- 0,-7.75);
+\draw[rrmsg] (t.center |- 0,-8.35) -- node[rrtext,above] {seat()} (c.center |- 0,-8.35);
+\node[rrtext] at (10.8,-9) {Host consumes its own task; phase becomes WAITER. Waiter is still available.};
+\end{tikzpicture}}
+\caption{Turn 4 arrival and seating. A free table is available. The Host seats C2, permitting ordering during the Happy Hour window without using the Waiter task.}
+\label{fig:seq1}
+\end{figure}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\resizebox{0.90\linewidth}{!}{\begin{tikzpicture}[x=1cm,y=0.8cm]
+\node[rrhead] (cli) at (0.0,0) {:GameCLI};
+\draw[rrlife] (cli.south) -- (0.0,-10.7);
+\node[rrhead] (g) at (2.7,0) {:GameController};
+\draw[rrlife] (g.south) -- (2.7,-10.7);
+\node[rrhead] (w) at (5.4,0) {:Waiter};
+\draw[rrlife] (w.south) -- (5.4,-10.7);
+\node[rrhead] (c) at (8.100000000000001,0) {C2:VIPCustomer};
+\draw[rrlife] (c.south) -- (8.100000000000001,-10.7);
+\node[rrhead] (p) at (10.8,0) {:PricingService};
+\draw[rrlife] (p.south) -- (10.8,-10.7);
+\node[rrhead] (hh) at (13.5,0) {:HappyHour};
+\draw[rrlife] (hh.south) -- (13.5,-10.7);
+\node[rrhead] (o) at (16.200000000000003,-6.7) {order:Order};
+\draw[rrlife] (o.south) -- (16.200000000000003,-10.7);
+\node[rrhead] (chef) at (18.900000000000002,0) {:Chef};
+\draw[rrlife] (chef.south) -- (18.900000000000002,-10.7);
+\draw[rrmsg] (cli.center |- 0,-0.8) -- node[rrtext,above] {takeOrder(2)} (g.center |- 0,-0.8);
+\draw[rrmsg] (g.center |- 0,-1.4) -- node[rrtext,above] {takeOrder(C2, menu)} (w.center |- 0,-1.4);
+\draw[rrmsg] (w.center |- 0,-2) -- node[rrtext,above] {chooseMeal(menu)} (c.center |- 0,-2);
+\draw[rrreturn] (c.center |- 0,-2.6) -- node[rrtext,above] {Burger (inherited deterministic selection)} (w.center |- 0,-2.6);
+\draw[rrmsg] (w.center |- 0,-3.2) -- node[rrtext,above] {quote(C2, Burger)} (p.center |- 0,-3.2);
+\draw[rrmsg] (p.center |- 0,-3.8) -- node[rrtext,above] {discountedBill(1500)} (c.center |- 0,-3.8);
+\draw[rrreturn] (c.center |- 0,-4.4) -- node[rrtext,above] {1350} (p.center |- 0,-4.4);
+\draw[rrmsg] (p.center |- 0,-5) -- node[rrtext,above] {isActive()} (hh.center |- 0,-5);
+\draw[rrreturn] (hh.center |- 0,-5.6) -- node[rrtext,above] {true} (p.center |- 0,-5.6);
+\draw[rrreturn] (p.center |- 0,-6.15) -- node[rrtext,above] {1080 cents} (w.center |- 0,-6.15);
+\draw[rrmsg] (w.center |- 0,-6.7) -- node[rrtext,above] {new Order(Burger, 1080)} (o.west);
+\draw[rrmsg] (w.center |- 0,-7.3) -- node[rrtext,above] {placeOrder(order)} (c.center |- 0,-7.3);
+\draw[rrmsg] (cli.center |- 0,-7.9) -- node[rrtext,above] {prepareOrder(2)} (g.center |- 0,-7.9);
+\draw[rrmsg] (g.center |- 0,-8.5) -- node[rrtext,above] {prepare(C2, 4)} (chef.center |- 0,-8.5);
+\draw[rrmsg] (chef.center |- 0,-9.1) -- node[rrtext,above] {prepare(4): READY, readyTurn = 4} (o.center |- 0,-9.1);
+\draw[rrmsg] (cli.center |- 0,-9.7) -- node[rrtext,above] {finishTurn()} (g.center |- 0,-9.7);
+\draw[rrmsg] (g.center |- 0,-10.3) -- node[rrtext,above] {losePatience(): 100 to 95} (c.center |- 0,-10.3);
+\end{tikzpicture}}
+\caption{Turn 4 ordering and preparation. Pricing applies the VIP discount before Happy Hour. Order stores its final bill once. The Waiter phase has already ended when the Chef finishes, and Order also guards against service in its ready turn.}
+\label{fig:seq2}
+\end{figure}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\resizebox{0.90\linewidth}{!}{\begin{tikzpicture}[x=1cm,y=0.8cm]
+\node[rrhead] (cli) at (0.0,0) {:GameCLI};
+\draw[rrlife] (cli.south) -- (0.0,-15.3);
+\node[rrhead] (g) at (2.7,0) {:GameController};
+\draw[rrlife] (g.south) -- (2.7,-15.3);
+\node[rrhead] (w) at (5.4,0) {:Waiter};
+\draw[rrlife] (w.south) -- (5.4,-15.3);
+\node[rrhead] (c) at (8.100000000000001,0) {C2:VIPCustomer};
+\draw[rrlife] (c.south) -- (8.100000000000001,-15.3);
+\node[rrhead] (o) at (10.8,0) {order:Order};
+\draw[rrlife] (o.south) -- (10.8,-15.3);
+\node[rrhead] (cash) at (13.5,0) {:Cashier};
+\draw[rrlife] (cash.south) -- (13.5,-15.3);
+\node[rrhead] (t) at (16.200000000000003,0) {:Table};
+\draw[rrlife] (t.south) -- (16.200000000000003,-15.3);
+\node[rrhead] (r) at (18.900000000000002,-12.4) {:GameResult};
+\draw[rrlife] (r.south) -- (18.900000000000002,-15.3);
+\node[rrtext] at (9.4,-0.75) {Turn 5: beginTurn(false), Happy Hour recovery 95 to 100; Host waits.};
+\draw[rrmsg] (cli.center |- 0,-1.4) -- node[rrtext,above] {serveCustomer(2)} (g.center |- 0,-1.4);
+\draw[rrmsg] (g.center |- 0,-2) -- node[rrtext,above] {serve(C2, 5)} (w.center |- 0,-2);
+\draw[rrmsg] (w.center |- 0,-2.6) -- node[rrtext,above] {serve(5)} (c.center |- 0,-2.6);
+\draw[rrmsg] (c.center |- 0,-3.2) -- node[rrtext,above] {serve(5): SERVED [readyTurn < 5]} (o.center |- 0,-3.2);
+\node[rrtext] at (9.4,-3.8) {Chef waits; finishTurn(): finishEating(5) keeps C2 EATING.};
+\node[rrtext] at (9.4,-4.4) {Turn 6: Happy Hour expires; after the staff choices:};
+\draw[rrmsg] (cli.center |- 0,-5) -- node[rrtext,above] {finishTurn()} (g.center |- 0,-5);
+\draw[rrmsg] (g.center |- 0,-5.6) -- node[rrtext,above] {finishEating(6): READY\_TO\_PAY} (c.center |- 0,-5.6);
+\draw[rrmsg] (g.center |- 0,-6.2) -- node[rrtext,above] {collectOldest(customers, 6)} (cash.center |- 0,-6.2);
+\draw[rrmsg] (cash.center |- 0,-6.8) -- node[rrtext,above] {canPay(6): false [readyToPayTurn = 6]} (c.center |- 0,-6.8);
+\node[rrtext] at (9.4,-7.4) {Turn 7: after staff choices, finishTurn(); C2 is the oldest eligible payer.};
+\draw[rrmsg] (g.center |- 0,-8) -- node[rrtext,above] {collectOldest(customers, 7)} (cash.center |- 0,-8);
+\draw[rrmsg] (cash.center |- 0,-8.6) -- node[rrtext,above] {pay(7) [canPay(7)]} (c.center |- 0,-8.6);
+\draw[rrmsg] (c.center |- 0,-9.2) -- node[rrtext,above] {markPaid()} (o.center |- 0,-9.2);
+\draw[rrreturn] (cash.center |- 0,-9.8) -- node[rrtext,above] {PaymentRecord(C2, 1080, 100, 7)} (g.center |- 0,-9.8);
+\draw[rrmsg] (g.center |- 0,-10.4) -- node[rrtext,above] {releaseIfFinished()} (t.center |- 0,-10.4);
+\draw[rrframe] (-1.2,-10.9) rectangle (17.3,-11.8);
+\node[rrguard] at (-1.2,-10.9) {loop [remaining turns through 18]};
+\draw[rrmsg] (cli.center |- 0,-11.5) -- node[rrtext,above] {beginTurn(...), staff actions, finishTurn()} (g.center |- 0,-11.5);
+\draw[rrmsg] (cli.center |- 0,-12.05) -- node[rrtext,above] {getResult() [FINISHED]} (g.center |- 0,-12.05);
+\draw[rrmsg] (g.center |- 0,-12.4) -- node[rrtext,above] {new GameResult(paid, revenue, satisfactionTotal)} (r.west);
+\draw[rrmsg] (cli.center |- 0,-13.05) -- node[rrtext,above] {isVictory()} (r.center |- 0,-13.05);
+\draw[rrframe] (-1.2,-13.4) rectangle (20.3,-15.25);
+\node[rrguard] at (-1.2,-13.4) {alt [paid >= 4 and revenue >= 4500 and satisfactionTotal >= 60 * paid]};
+\node[rrtext] at (9.4,-14) {CLI prints FINAL: VICTORY};
+\draw[dashed] (-1.2,-14.4) -- (20.3,-14.4);
+\node[rrtext] at (9.4,-14.85) {[else] CLI prints FINAL: DEFEAT};
+\end{tikzpicture}}
+\caption{Turns 5--7 and the final result check. Eating is updated before payment selection; the strict timestamp guard still defers payment until turn 7. The immutable PaymentRecord is stored by the controller. The combined alternative tests the final game totals, not this one payment alone.}
+\label{fig:seq3}
+\end{figure}
+\end{landscape}
+\clearpage
+\subsection{How the choice changes the outcome}
+Using the Host on turn 4 frees the Waiter's single task for ordering. If the
+manager instead makes the Host wait and the Waiter seat C2, ordering cannot
+happen until turn 5, and the earliest preparation, service and payment each move
+one turn later. Happy Hour activation trades revenue for patience: the same
+Burger costs 1080 cents during the window instead of the VIP-only 1350 cents.
+Recovery on turn 5 removes C2's five-point waiting loss from turn 4, so this
+payment records satisfaction 100 instead of 95 without Happy Hour. These are
+local consequences; the complete game's victory still depends on all payments.
+
+\paragraph{Validation and retries.} GameCLI repeats its role loop while the
+controller remains in that phase. If an action fails, an
+\texttt{IllegalArgumentException} or \texttt{IllegalStateException} is caught,
+the reason is printed and the phase is unchanged. Successful domain work precedes
+\texttt{completeTask()} and the controller's next-phase assignment. The successful
+scenario above omits these exceptional calls; no \texttt{ActionResult} class or
+\texttt{GameView} is used by this implementation.
