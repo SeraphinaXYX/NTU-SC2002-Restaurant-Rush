@@ -1,0 +1,67 @@
+\section{Design consideration}
+\subsection{Responsibilities and cohesion}
+\begin{longtable}{@{}p{0.30\textwidth}p{0.64\textwidth}@{}}
+\toprule \textbf{Abstraction} & \textbf{Responsibility}\\\midrule\endhead
+\texttt{Main}, \texttt{GameCLI} & Construct the program, collect commands, explain invalid choices and display state. The CLI requests actions through the controller.\\
+\texttt{GameController} & Coordinate turn phases, staff tasks, arrivals and aggregate results. It owns the game collections and has no console dependency.\\
+\texttt{ArrivalSchedule} & Create the scheduled customer type without putting type-dependent patience/pricing rules in the turn loop.\\
+\texttt{Customer}, \texttt{VIPCustomer}, \texttt{CriticCustomer} & Own service state and satisfaction; dispatch waiting loss, meal preference and customer discount. Concrete \texttt{Customer} represents a Regular.\\
+\texttt{Order} & Own preparation progress, readiness timestamps, locked bill and legal food-state transitions.\\
+\texttt{Table} & Hold one occupant until payment or departure; centralise seating.\\
+\texttt{Staff} and its four roles & Share the one-task allowance while each subclass exposes its own meaningful operations.\\
+\texttt{Menu}, \texttt{MenuItem}, \texttt{ComboMeal} & Describe immutable item prices/preparation and compose the two existing combo components.\\
+\texttt{HappyHour}, \texttt{PricingService} & Track activation/duration and calculate the order-time quote with the required discount order.\\
+\texttt{PaymentRecord}, \texttt{GameResult} & Preserve completed-payment facts and evaluate the exact victory thresholds.\\
+\texttt{TurnPhase}, \texttt{CustomerStatus}, \texttt{OrderStatus} & Hold named String constants. These are not Java enums.\\
+\bottomrule
+\end{longtable}
+
+\subsection{Principles reflected in this code}
+\textbf{SRP.} The CLI handles interaction, the controller schedules the turn,
+Order guards preparation/serving/payment transitions, and PricingService quotes
+the bill. These responsibilities can be discussed and tested separately.
+The small forecast shown by GameCLI is presentation logic with timing
+assumptions; keeping it beside the display is a simplicity trade-off.
+
+\textbf{OCP.} Customer references dispatch \texttt{getWaitingLoss()},
+\texttt{chooseMeal()} and \texttt{discountedBill()} to the applicable subclass.
+Adding VIP/Critic behaviour did require setup and a pricing hook in Stage~2;
+the claim is reduced coupling, not zero changes to existing code.
+Adding Host and the pricing policy did not require rewriting Chef or Cashier.
+
+\textbf{LSP.} Regular, VIP and Critic customers follow the same seat/order/serve/
+eat/pay flow. Their overrides change documented preferences, patience and
+pricing while preserving that service contract. ComboMeal supports the same
+MenuItem getters used by ordering and cooking.
+
+\textbf{ISP.} There is no interface hierarchy in this small implementation.
+Staff shares only task availability; it does not force Cashier to implement
+cooking or Chef to implement seating. This is a focused API choice, not a
+claim that an unused interface pattern has been implemented.
+
+\textbf{DIP.} Waiter receives a PricingService through its constructor and
+GameCLI receives its controller and Scanner. These explicit dependencies aid
+construction and testing. Both still depend on concrete classes; full
+interface-based dependency inversion is deliberately not claimed.
+
+\subsection{Encapsulation, composition and alternatives}
+Private fields and domain operations guard state. A failed action leaves the
+controller in the same phase, and Staff completes a task only after a valid
+action. Order and Customer timestamps prevent same-turn serving and early payment, respectively.
+PaymentRecord is immutable, so later events cannot change recorded revenue or
+paid satisfaction. Returned ArrayLists are container copies containing the same
+domain objects; this is a deliberately limited boundary for a six-customer CLI.
+
+Customer has at most one Order. GameController owns its staff, tables and
+payment records. ComboMeal holds references to two existing immutable MenuItem
+components; this is aggregation of shared menu objects rather than exclusive
+ownership of them. The waiting queue is derived from customer state in arrival
+order, avoiding a second membership collection that could become inconsistent.
+
+An alternative was one large controller with customer-type conditionals,
+parallel order arrays and discount branches. It would reduce the number of
+files, but entangle service transitions, pricing and display. The chosen model
+keeps those rules in the objects that own the affected state. A more generic
+engine with interfaces for every phase was also unnecessary for 18 turns and
+six customers. Named String constants are familiar to the course, though enums
+would give stronger compile-time state checking in a larger project.
