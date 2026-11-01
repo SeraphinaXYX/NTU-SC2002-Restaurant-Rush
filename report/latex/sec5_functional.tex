@@ -1,0 +1,73 @@
+\section{Functional evidence}
+The integration test runner compiles each historical snapshot independently with
+\texttt{javac --release 11 -Xlint:all}, then compiles the current source. The
+recorded run uses Corretto OpenJDK 11.0.29. All ten CLI runs and 43 independent
+rule checks passed. Current source is PR~\#1's \texttt{b62d196} plus the
+successful-order announcement. Its reviewed source digest is pinned in the
+runner; current receipts identify the source commit or uncommitted snapshot and base revision.
+
+Run \texttt{python3 tests/run\_checks.py} from the repository root. The game
+itself needs only Java; Git and Python~3 are test tools. Temporary sources and
+class files are removed. Ordinary verification compares saved transcripts and
+does not overwrite them. Explicit regeneration still requires semantic checks
+to pass. Full source/input/output hashes and observed metrics are recorded in
+\texttt{tests/evidence/results.json}.
+
+\begin{table}[H]\centering\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule \textbf{Fixture} & \textbf{Paid} & \textbf{Revenue} & \textbf{Paid sat.} & \textbf{Turns}\\\midrule
+\texttt{stage1{\textendash}victory} & 5 & \$66.00 & 79.2 & 18 \\
+\texttt{stage1{\textendash}defeat} & 0 & \$0.00 & N/A & 18 \\
+\texttt{stage2{\textendash}victory} & 5 & \$64.50 & 78.0 & 18 \\
+\texttt{stage2{\textendash}defeat} & 0 & \$0.00 & N/A & 18 \\
+\texttt{stage3{\textendash}victory} & 5 & \$77.40 & 81.6 & 18 \\
+\texttt{stage3{\textendash}defeat} & 0 & \$0.00 & N/A & 18 \\
+\texttt{head{\textendash}victory} & 5 & \$77.40 & 81.6 & 18 \\
+\texttt{head{\textendash}defeat} & 0 & \$0.00 & N/A & 18 \\
+\texttt{head{\textendash}invalid} & 5 & \$77.40 & 81.6 & 18 \\
+\texttt{head{\textendash}no{\textendash}happy{\textendash}hour} & 5 & \$80.10 & 80.6 & 18 \\
+\bottomrule\end{tabular}
+\caption{Freshly generated functional results; zero-paid runs are defeats, the others victories.}
+\end{table}
+
+The Stage~1 and~2 fixtures use their exact historical commits; Stage~3 uses
+\texttt{bae23ff}; head fixtures use the reviewed working tree based on \texttt{b62d196}. All
+victories serve five customers with no unhappy departures. All wait-only
+defeats have two departures by closing; later arrivals have not all exhausted
+patience. Stage~2 includes the VIP and Critic. The head-invalid run inserts
+four rejected choices and still matches the valid victory metrics, checking
+that invalid input does not consume the staff task or silently advance play.
+Current-source runs also assert the exact new-order announcement and that it
+precedes the same-turn Chef prompt, including the VIP and Happy Hour bill.
+This regression failed on the old source and passed after the CLI patch.
+Historical stage transcripts and all outcome metrics remain unchanged.
+
+\subsection{Independent rule checks}
+The Java harness checks the Pasta worked example separately from the arrival
+schedule: seat on turn~1; order and first preparation unit on turn~2; READY on
+turn~3; serve on turn~4; READY\_TO\_PAY on turn~5; pay \$18.00 on turn~6.
+Satisfaction is 92, 84 and 76 after the three unserved turns, then remains 76.
+Same-turn serving/payment are rejected and the table is released after payment.
+
+Other assertions check the \$24.30 three-unit combo, VIP Burger with Happy Hour
+at \$10.80, the two-turn/once-only policy, recovery cap, paid/departed immunity,
+price locking, polymorphic waiting losses, abandonment cancellation, staff
+capacity, unpaid revenue exclusion and exact victory thresholds. Transcript
+comparison alone is not the basis for these claims.
+
+\subsection{How a manager decision changes the outcome}
+The head-no-happy-hour fixture uses exactly the same staff commands as the
+head-victory fixture, but leaves Happy Hour off. Each customer's food is
+identical because this implementation's choices are deterministic by ID and menu.
+With Happy Hour on turn~4 the final result is \$77.40 and satisfaction 81.6;
+without it the result is \$80.10 and 80.6. Both pay five customers and win.
+The decision costs \$2.70 for one point of final average satisfaction. It is a
+measured trade-off, not a claimed victory reversal or optimal strategy.
+The sequence diagram traces the VIP whose bill changes from \$13.50 to
+\$10.80 and whose recorded satisfaction changes from 95 to 100.
+
+\subsection{Coverage limits}
+The focused suite covers ten scripted CLI journeys, all stage compiles and the
+listed rules. It does not exhaust every manager strategy, certify remote tags,
+produce a recorded video or establish instructor acceptance. The exact receipts
+and inputs accompany the project, so outcomes can be reproduced and inspected.
