@@ -1,0 +1,35 @@
+\section{Stages and development evidence}
+\subsection{Source identities and tag status}
+\begin{tabularx}{\textwidth}{@{}l l X@{}}
+\toprule \textbf{Stage} & \textbf{Tag} & \textbf{Evidence}\\\midrule
+Stage~1 & \texttt{stage-1} & Regular customers and complete base game; independent compile, victory and defeat.\\
+Stage~2 & \texttt{stage-2} & VIP and Critic extensions; independent compile, victory and defeat.\\
+Stage~3 & \texttt{stage-3} & Host, combo, Happy Hour and order announcements; independent compile, victory and defeat.\\
+\bottomrule
+\end{tabularx}
+
+All three annotated tags are published on the remote repository. Each tagged
+commit compiles and runs independently.
+
+\subsection{Stage 1 to Stage 2}
+\href{https://github.com/SeraphinaXYX/NTU-SC2002-Restaurant-Rush/compare/stage-1...stage-2}{Compare Stage 1 and Stage 2.}
+\begin{itemize}
+\item New: \texttt{ArrivalSchedule.java}, \texttt{VIPCustomer.java} and \texttt{CriticCustomer.java}.
+\item Changed: \texttt{GameController.java} delegates arrival construction;
+\texttt{Customer.java} adds the discount hook; \texttt{Waiter.java} calls it.
+\item Changed: \texttt{README.md} explains the new behaviour.
+No files were deleted.
+\end{itemize}
+These are both registration and behavioural changes: setup selects the subtype,
+then the existing Customer references dispatch the differing rules.
+
+\subsection{Stage 2 to Stage 3}
+\href{https://github.com/SeraphinaXYX/NTU-SC2002-Restaurant-Rush/compare/stage-2...stage-3}{Compare Stage 2 with Stage 3.}
+\begin{itemize}
+\item New domain files: \texttt{Host.java}, \texttt{ComboMeal.java}, \texttt{HappyHour.java} and \texttt{PricingService.java}.
+\item Changed: \texttt{GameController.java} and \texttt{TurnPhase.java} add the Host phase and turn-start policy; \texttt{Waiter.java} requests a quote.
+\item Changed: \texttt{Menu.java} registers the combo; \texttt{Customer.java} adds recovery and a served timestamp getter; \texttt{Order.java} adds a ready timestamp getter.
+\item Changed: \texttt{GameCLI.java} collects Stage~3 choices, displays policy duration and explains earliest timing.
+\end{itemize}
+Historical source, rather than a Stage~3 feature switch, establishes the real
+earlier stages. Each tagged revision can be checked out and compiled independently.
