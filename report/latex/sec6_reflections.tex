@@ -1,0 +1,30 @@
+\section{Reflections}
+
+\subsection{Technical reflection}
+Separating the controller from console input makes rules executable without
+simulating the terminal. Timestamp checks are particularly important: the
+visually similar READY, SERVED and READY\_TO\_PAY states must still occur on
+different turns. The independent rule checks complement complete CLI runs,
+which could otherwise repeat an error in both a transcript and its expected output.
+
+The chosen scope keeps the existing small design and deterministic choices.
+It does not add a GUI, a generic engine or a new advice system. Those features
+are not required to explain the OO design and could increase the verification
+burden. Current limitations include concrete dependencies, String-based states
+and container copies that still expose domain-object references. These are
+explicit trade-offs rather than claims of a fully general production model.
+
+\subsection{Personal reflections}
+
+\subsubsection*{Liang Rui}
+\textit{[Write your personal reflection here. Describe your contribution,
+a design decision you found interesting or revised, and what you learned.]}
+
+\subsubsection*{Xie Yixuan}
+\textit{[Write your personal reflection here.]}
+
+\subsubsection*{Angel Chua}
+\textit{[Write your personal reflection here.]}
+
+\subsubsection*{Zhu Yuean}
+\textit{[Write your personal reflection here.]}
