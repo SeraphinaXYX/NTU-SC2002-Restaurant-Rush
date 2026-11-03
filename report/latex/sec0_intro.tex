@@ -1,0 +1,38 @@
+\section{Project and integration scope}
+The manager runs a restaurant for all 18 turns, deciding seating, ordering,
+serving and kitchen priorities under limited staff capacity. The required base
+setting has two tables and six arrivals, on turns 1, 4, 7, 10, 13 and 16.
+Victory requires at least four paid customers, revenue of at least \$45.00,
+and average paid-customer satisfaction of at least 60. If nobody has paid,
+the display shows N/A rather than a misleading average of zero.
+
+This integration selects PR~\#1's implementation at \texttt{b62d196}, with one
+final CLI correction: successful orders announce the customer, chosen meal,
+preparation and locked bill before the Chef prompt. Domain and controller
+source are unchanged. PR~\#2 supplied the report structure and presentation
+starting point. Its class names, seeded ordering, test transcripts and results
+were not transferred as facts about this implementation. Diagrams, design
+explanations, stage comparisons and functional evidence below describe PR~\#1.
+The documentation sources retain their provenance in \texttt{docs/INTEGRATION.md}.
+
+\subsection{Rules and reproducibility}
+Money is stored as integer cents. Regular customers lose 8 satisfaction per
+unserved waiting turn, VIPs lose 5 and Critics lose 12. Arrival~2 is a VIP and
+arrival~3 a Critic in Stages~2 and~3. The manager never chooses the food.
+Regular/VIP choices use arrival ID modulo the menu size; Critics select the
+item with most preparation units, then highest price. Stage~1 cycles Salad,
+Burger and Pasta; Stage~3 adds Salad + Pasta as the fourth choice.
+
+The Waiter acts before the Chef. A dish finished this turn can be served next
+turn at the earliest. A customer served on turn $t$ becomes ready to pay on
+$t+1$ and can pay on $t+2$ at the earliest. Tables are released only at payment
+or abandonment, and unpaid orders contribute no revenue. The turn-16 arrival
+cannot complete payment before closing. All mandatory features run offline.
+
+Stage~3 adds a Host with one seating action, in addition to the Waiter;
+a composed Salad + Pasta combo costing \$24.30 with three preparation units;
+and a once-per-game Happy Hour lasting its activation turn and the next.
+Happy Hour restores up to 15 satisfaction at turn start to waiting/unserved
+customers and discounts new orders by 20\%, after the VIP discount.
+The bill is fixed when ordering. No seeded-randomness claim applies to this
+implementation: repeated input and the same source revision determine the run.

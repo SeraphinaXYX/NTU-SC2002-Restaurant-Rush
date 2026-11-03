@@ -1,27 +1,109 @@
 # SC2002 Restaurant Rush
 
-Java command-line restaurant management game — Stage 3.
+Java command-line restaurant management game. This version implements Stage 3.
+
+[Launch instructions and beginner's playing guide](docs/PLAYING.md)
 
 ## Build and play
 
-Requires JDK 11 or later.
+Requires JDK 11 or later. Open the project in your Java IDE, use `src` as the
+source folder, then run the `main` method in
+[`src/restaurantrush/Main.java`](src/restaurantrush/Main.java).
+
+To compile and launch directly from Terminal in this repository:
 
 ```sh
 javac -encoding UTF-8 -d out -sourcepath src src/restaurantrush/Main.java
 java -cp out restaurantrush.Main
 ```
 
+`Main.main()` creates the game and starts the turn loop in `GameCLI.run()`.
+The compiled classes go into the ignored `out` folder. The game runs offline.
+Enter a customer number after a task, such as order 1.
+At turn start choose on to activate Happy Hour, or off to continue. Off does not
+cancel an active Happy Hour. It lasts two turns and can be activated only once.
+The Host accepts seat ID or wait before the Waiter acts.
+The Waiter accepts seat ID, order ID, serve ID or wait. The Chef accepts cook ID
+or wait. The first free table is used. Invalid choices can be retried without
+using a task. If input ends, remaining staff choices wait until turn 18.
+Timing hints explain earliest serving and payment turns, including payments
+after closing. Satisfaction averages display one decimal place.
+
 ## Game rules
 
-Two tables and arrivals on turns 1, 4, 7, 10, 13 and 16.
-Customers choose their meals from Salad, Burger, Pasta and Salad + Pasta.
+The base setting has two tables and arrivals on turns 1, 4, 7, 10, 13 and 16.
+Customers choose their meals. Regular customers cycle through Salad, Burger,
+Pasta and Salad + Pasta by arrival ID.
 Arrival 2 is a VIP: patience loss 5 and a 10% discount. Arrival 3 is a Critic:
-patience loss 12 and a preference for the meal with the most preparation units.
-Other customers are Regular, with patience loss 8.
+patience loss 12 and a preference for the meal with the most preparation units,
+then highest price if tied. Other customers are Regular, with patience loss 8.
 The Salad + Pasta combo costs $24.30 and requires three preparation units.
-The Host assigns seating before the Waiter acts.
-Happy Hour gives 20% off new orders and restores 15 satisfaction to waiting customers.
-The Waiter seats customers, takes orders and serves food.
-The Chef prepares orders. The Cashier handles payments.
+Apply the VIP discount before Happy Hour. Each percentage discount rounds to the
+nearest cent, with half cents rounded up. Bills are locked when the order is taken.
+Happy Hour gives 20% off new orders and restores 15 satisfaction at turn start
+to customers still waiting for a table or food, capped at 100.
+A prepared dish can be served next turn at the earliest. Eating takes a full
+turn; payment follows on a later turn. The Cashier handles the oldest eligible
+customer, breaking ties by arrival ID. Tables stay occupied until payment or departure.
 After all 18 turns, victory requires at least four paid customers, $45.00 revenue
 and average satisfaction of paid customers of at least 60.
+
+## Verification
+
+```sh
+python3 tests/run_checks.py
+```
+
+The test runner additionally needs Python 3 and Git. The game itself needs only JDK 11+.
+[TESTING.md](TESTING.md) explains ten reproducible CLI runs and 43 independent rule checks.
+Inputs, expected transcripts and exact-source receipts are in [`tests/`](tests/).
+
+The [PDF report](report/SC2002_Restaurant_Rush_Report.pdf) covers class and sequence diagrams,
+design principles, stage changes, functional evidence and reflections.
+[Report sources and build notes](report/README.md) and [editable design notes](docs/DESIGN.md)
+are included.
+
+## Stages and tags
+
+| Stage | Git tag | Content |
+| --- | --- | --- |
+| Stage 1 | `stage-1` | Regular customers, menu, Waiter, Chef, Cashier and complete 18-turn game. |
+| Stage 2 | `stage-2` | VIP and Critic customers using the same service flow. |
+| Stage 3 | `stage-3` | Host seating, ComboMeal, Happy Hour, order announcements and reproducible checks. |
+
+All three annotated tags are published on the remote repository. Each tagged commit compiles and runs independently.
+
+## Stage 1 to Stage 2
+
+[Compare stages](https://github.com/SeraphinaXYX/NTU-SC2002-Restaurant-Rush/compare/stage-1...stage-2).
+
+| Change | Files | Reason |
+| --- | --- | --- |
+| New | `ArrivalSchedule.java`; `VIPCustomer.java`; `CriticCustomer.java` | Separate arrival construction and add polymorphic customer behaviour. |
+| Changed | `GameController.java` | Delegate scheduled customer creation. |
+| Changed | `Customer.java`; `Waiter.java` | Add and invoke the customer discount operation. |
+
+## Stage 2 to Stage 3
+
+[Compare stages](https://github.com/SeraphinaXYX/NTU-SC2002-Restaurant-Rush/compare/stage-2...stage-3).
+
+| Change | Files | Reason |
+| --- | --- | --- |
+| New | `ComboMeal.java`; `Host.java`; `HappyHour.java`; `PricingService.java` | Add composed meals, additional seating and the timed order-price policy. |
+| Changed | `GameController.java`; `TurnPhase.java` | Coordinate Host actions and turn-start policy effects. |
+| Changed | `Menu.java`; `Customer.java`; `Waiter.java` | Register the combo, recover eligible satisfaction and quote bills at ordering. |
+| Changed | `Order.java`; `GameCLI.java` | Expose read-only timestamps; collect Stage 3 choices. |
+
+## Video
+
+Fill the actual presenters and timestamps after recording the approximately 15-minute group video.
+
+| Segment | Required content | Presenter / timestamp |
+| --- | --- | --- |
+| 1 | Launch from the submitted project | TBD |
+| 2 | Meaningful choices with constrained staff | TBD |
+| 3 | READY → SERVED → payment | TBD |
+| 4 | VIP or Critic behaviour | TBD |
+| 5 | Stage 3 feature | TBD |
+| 6 | Reproducible victory and defeat | TBD |
+| 7 | Stage comparisons and diagrams | TBD |
