@@ -96,14 +96,25 @@ All three annotated tags are published on the remote repository. Each tagged com
 
 ## Video
 
-Fill the actual presenters and timestamps after recording the approximately 15-minute group video.
+Approximately 15-minute group presentation video.
 
 | Segment | Required content | Presenter / timestamp |
 | --- | --- | --- |
-| 1 | Launch from the submitted project | TBD |
-| 2 | Meaningful choices with constrained staff | TBD |
-| 3 | READY → SERVED → payment | TBD |
-| 4 | VIP or Critic behaviour | TBD |
-| 5 | Stage 3 feature | TBD |
-| 6 | Reproducible victory and defeat | TBD |
-| 7 | Stage comparisons and diagrams | TBD |
+| 1 | Launch from the submitted project | Liang Rui, 0:00 |
+| 2 | Meaningful choices with constrained staff | Liang Rui, 2:05 |
+| 3 | READY → SERVED → payment | Xie Yixuan, 4:10 |
+| 4 | VIP or Critic behaviour | Xie Yixuan, 6:20 |
+| 5 | Stage 3 feature (Host / ComboMeal / Happy Hour) | Angel Chua, 8:35 |
+| 6 | Reproducible victory and defeat | Angel Chua, 10:45 |
+| 7 | Stage comparisons and final diagrams | Zhu Yuean, 12:00 |
+
+## AI history
+
+Each member's project-related AI chat history is on their own branch under `ai-history/`.
+
+| Member | Branch | Stages covered |
+| --- | --- | --- |
+| Liang Rui | [`member/liang-rui`](../../tree/member/liang-rui/ai-history) | Stage 1 (×2), Stage 2, Stage 3 |
+| Xie Yixuan | [`member/xie-yixuan`](../../tree/member/xie-yixuan/ai-history) | Stage 1, Stage 2 (×2), Stage 3 |
+| Angel Chua | [`member/angel-chua`](../../tree/member/angel-chua/ai-history) | Stage 2, Stage 3 (×3) |
+| Zhu Yuean | [`member/zhu-yuean`](../../tree/member/zhu-yuean/ai-history) | Stage 1, Stage 2, Stage 3 |
