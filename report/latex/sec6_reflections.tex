@@ -17,25 +17,37 @@ explicit trade-offs rather than claims of a fully general production model.
 \subsection{Personal reflections}
 
 \subsubsection*{Liang Rui}
-My main contribution was the Stage~1 core: the \texttt{GameController} turn loop,
-the \texttt{TurnPhase} state constants, and the base domain classes
-(\texttt{Customer}, \texttt{Order}, \texttt{Waiter}, \texttt{Chef}, \texttt{Cashier}).
+My contribution covered development and verification of the Stage 1 baseline, its class diagram and
+the report's design discussion. This linked implementation, UML and design reasoning. Xie Yixuan
+contributed Stage 2 extensions, Angel Chua Stage 3 features, and Zhu Yuean automated tests and
+functional evidence.
 
-The most interesting design decision was using string constants with a
-\texttt{requirePhase()} guard instead of an enum or a switch chain.
-This keeps illegal phase transitions a runtime exception rather than a silent
-path through the wrong branch.
-I revised the original idea of advancing the phase inside each action method ---
-those advances turned out to be error-prone when two actions could share the
-same guard --- and moved the phase field entirely into \texttt{GameController},
-so each public method both checks and sets it in one place.
+The project strengthened my understanding of encapsulation and the single responsibility principle.
+\texttt{Order} guards its private state through valid operations, including rejecting service in the
+turn a dish becomes ready. This showed me how encapsulation protects game rules. Separating
+interaction in \texttt{GameCLI}, turn coordination in \texttt{GameController}, and rules in domain
+objects also made the many mechanisms easier to understand and verify.
 
-The hardest part was the payment timing rule: a customer who reaches
-\texttt{READY\_TO\_PAY} on turn $N$ cannot pay until turn $N+1$ or later.
-Off-by-one errors here caused correct-looking transcripts that failed on the
-final turn. I added a dedicated \texttt{readyToPayTurn} field and a
-\texttt{canPay(turn)} predicate that uses a strict less-than comparison to
-enforce the full-turn gap.
+My main challenge was systematically checking that these mechanisms worked together. Preparation,
+serving, eating, payment, satisfaction and table occupancy depend on one another, so I needed to
+consider both individual rules and their execution order.
+
+During final preparation, I arranged AI-assisted verification using existing tests and targeted
+checks. All ten scripted gameplay outcomes and 43 existing domain assertions passed. A controlled
+Pasta scenario confirmed READY on turn 3, service on turn 4, readiness to pay on turn 5, and payment
+on turn 6: an \$18.00 bill, satisfaction 76 and table release. Supplemental checks covered generated
+games, malformed input and deliberately faulty temporary copies. Codex executed the checks and wrote
+the additional harnesses under my direction; the original test suite remained Zhu Yuean's
+contribution.
+
+AI accelerated development, but judgement and engineering decisions remained ours. The verification
+work reinforced that generated code must be understood and checked against requirements;
+plausibility alone does not establish correctness.
+
+In a future project, I would agree on the baseline and responsibilities earlier, use shared
+checkpoints, and keep a common record of decisions and verification evidence. This would improve
+time management and reduce repeated work and administrative overhead, leaving more time for
+implementation and validation.
 
 \subsubsection*{Xie Yixuan}
 I extended Stage~1 with the \texttt{VIPCustomer} and \texttt{CriticCustomer}
