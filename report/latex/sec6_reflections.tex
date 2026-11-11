@@ -17,14 +17,84 @@ explicit trade-offs rather than claims of a fully general production model.
 \subsection{Personal reflections}
 
 \subsubsection*{Liang Rui}
-\textit{[Write your personal reflection here. Describe your contribution,
-a design decision you found interesting or revised, and what you learned.]}
+My main contribution was the Stage~1 core: the \texttt{GameController} turn loop,
+the \texttt{TurnPhase} state constants, and the base domain classes
+(\texttt{Customer}, \texttt{Order}, \texttt{Waiter}, \texttt{Chef}, \texttt{Cashier}).
+
+The most interesting design decision was using string constants with a
+\texttt{requirePhase()} guard instead of an enum or a switch chain.
+This keeps illegal phase transitions a runtime exception rather than a silent
+path through the wrong branch.
+I revised the original idea of advancing the phase inside each action method ---
+those advances turned out to be error-prone when two actions could share the
+same guard --- and moved the phase field entirely into \texttt{GameController},
+so each public method both checks and sets it in one place.
+
+The hardest part was the payment timing rule: a customer who reaches
+\texttt{READY\_TO\_PAY} on turn $N$ cannot pay until turn $N+1$ or later.
+Off-by-one errors here caused correct-looking transcripts that failed on the
+final turn. I added a dedicated \texttt{readyToPayTurn} field and a
+\texttt{canPay(turn)} predicate that uses a strict less-than comparison to
+enforce the full-turn gap.
 
 \subsubsection*{Xie Yixuan}
-\textit{[Write your personal reflection here.]}
+I extended Stage~1 with the \texttt{VIPCustomer} and \texttt{CriticCustomer}
+subclasses, the \texttt{ArrivalSchedule} factory, and the Stage~2 class diagram.
+
+The core concept I applied was the template-method pattern for discounts.
+Adding a \texttt{discountedBill(int baseCents)} hook to \texttt{Customer} ---
+returning the value unchanged by default --- let \texttt{VIPCustomer} override
+it with a 10\% reduction without changing any call sites in \texttt{Waiter} or
+\texttt{GameController}.
+Keeping the override in the subclass, rather than adding a type check in the
+caller, is the polymorphism principle from lecture directly at work.
+
+The trickiest part was \texttt{CriticCustomer.chooseMeal()}.
+The selection rule is: pick the item with the most preparation units, breaking
+ties by highest price.
+I initially wrote two separate loops, but that required two passes over the menu.
+Combining the condition into a single expression ---
+\texttt{units~>~best.units || (units == best.units \&\& price~>~best.price)} ---
+let me handle both criteria in one pass and made the intent clearer.
 
 \subsubsection*{Angel Chua}
-\textit{[Write your personal reflection here.]}
+I built the Stage~3 features: the \texttt{Host} phase, \texttt{ComboMeal},
+\texttt{HappyHour}, and \texttt{PricingService}.
+
+The design decision I found most educational was using dependency injection for
+\texttt{PricingService}: instead of letting the service create its own
+\texttt{HappyHour} instance, it receives one from \texttt{GameController}.
+This keeps the service stateless and testable without a running game loop.
+
+Modelling \texttt{ComboMeal} as a subclass of \texttt{MenuItem} rather than a
+separate concept also taught me composition within inheritance: the two component
+items are stored and exposed, but all callers that work with \texttt{MenuItem}
+references require no changes.
+
+The hardest part was the integer-rounding rule.
+Using \texttt{(price * 90 + 50) / 100} for a 10\% discount ensures half-cent
+values round up consistently.
+I initially used a floating-point cast, which produced rounding inconsistencies
+against the expected transcript, and switched to the integer formula after
+tracing the difference in a failing fixture run.
 
 \subsubsection*{Zhu Yuean}
-\textit{[Write your personal reflection here.]}
+My contribution spanned all three stages: I wrote the \texttt{.in}/\texttt{.out}
+test fixtures, the \texttt{RuleChecks} suite, the sequence diagram, and the
+\texttt{results.json} functional evidence.
+
+Writing deterministic test fixtures taught me how much clarity a fixed input
+sequence provides.
+Each \texttt{.in} file is a complete transcript of player decisions; the matching
+\texttt{.out} file is the exact expected output.
+Running a stage tag against its fixtures gives an objective pass/fail signal that
+does not depend on manual inspection.
+
+Drawing the sequence diagram challenged me to choose the right level of
+abstraction.
+I settled on the VIP~+~Happy Hour scenario starting at turn~4, because it shows
+the full discount chain: \texttt{Waiter.takeOrder()} calls
+\texttt{PricingService.quote()}, which calls \texttt{customer.discountedBill()}
+and then checks \texttt{happyHour.isActive()}.
+Showing both calls in sequence makes the layered discount policy visible in a
+way that the class diagram alone cannot.
