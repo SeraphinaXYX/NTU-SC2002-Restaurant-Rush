@@ -1,5 +1,7 @@
 # SC2002 Restaurant Rush
 
+**Repository:** https://github.com/SeraphinaXYX/NTU-SC2002-Restaurant-Rush
+
 Java command-line restaurant management game. This version implements Stage 3.
 
 [Launch instructions and beginner's playing guide](docs/PLAYING.md)
