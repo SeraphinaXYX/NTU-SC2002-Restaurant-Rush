@@ -98,7 +98,7 @@ All three annotated tags are published on the remote repository. Each tagged com
 
 ## Video
 
-Approximately 15-minute group presentation video.
+Group presentation video, 13 minutes 30 seconds.
 
 | Segment | Required content | Presenter / timestamp |
 | --- | --- | --- |
