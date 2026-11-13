@@ -98,7 +98,7 @@ All three annotated tags are published on the remote repository. Each tagged com
 
 ## Video
 
-Group presentation video, 14 minutes 35 seconds. File: [`SC2002_RR_Final.mp4`](SC2002_RR_Final.mp4)
+Group presentation video, 13 minutes 47 seconds. File: [`SC2002_RR_Final.mp4`](SC2002_RR_Final.mp4)
 
 | Segment | Required content | Presenter / timestamp |
 | --- | --- | --- |
@@ -108,7 +108,7 @@ Group presentation video, 14 minutes 35 seconds. File: [`SC2002_RR_Final.mp4`](S
 | 4 | VIP or Critic behaviour | Xie Yixuan, 6:20 |
 | 5 | Stage 3 feature (Host / ComboMeal / Happy Hour) | Angel Chua, 8:35 |
 | 6 | Reproducible victory and defeat | Angel Chua, 10:45 |
-| 7 | Stage comparisons and final diagrams | Zhu Yuean, 12:00 |
+| 7 | Stage comparisons and final diagrams | Zhu Yuean, 11:11 |
 
 ## AI history
 
