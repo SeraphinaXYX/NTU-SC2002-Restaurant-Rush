@@ -98,7 +98,7 @@ All three annotated tags are published on the remote repository. Each tagged com
 
 ## Video
 
-Group presentation video, 13 minutes 30 seconds.
+Group presentation video, 14 minutes 35 seconds. File: [`SC2002_RR_Final.mp4`](SC2002_RR_Final.mp4)
 
 | Segment | Required content | Presenter / timestamp |
 | --- | --- | --- |
